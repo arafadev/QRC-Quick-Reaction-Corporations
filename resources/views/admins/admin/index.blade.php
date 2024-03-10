@@ -19,7 +19,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($admins as $admin)
                                     <tr>
                                         <td><img src="{{ asset($admin->image) }}" width="50px" height="50px"
@@ -37,12 +36,9 @@
 
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
-
                     </div>
-
                 </div>
             </div>
         </div>

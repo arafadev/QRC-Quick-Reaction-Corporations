@@ -10,6 +10,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admins.admin.index', ['admins' => Admin::get()]);
+        return view('admins.admin.index', ['admins' => Admin::where('id', '!=' , auth()->user()->id)->get()]);
     }
 }
