@@ -39,9 +39,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
     Route::get('user/edit/{id}',   [UserController::class, 'edit'])->name('user.edit');
     Route::post('user/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('user/inactive/{id}', [UserController::class, 'inactive'])->name('user.inactive');
     Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
-
     Route::get('user/active/{id}', [UserController::class, 'active'])->name('user.active');
+    Route::get('user/inactive/{id}', [UserController::class, 'inactive'])->name('user.inactive');
 
 });

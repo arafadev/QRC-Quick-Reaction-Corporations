@@ -32,10 +32,12 @@
                                         <td>{{ $user->phone }}</td>
                                         <td>
                                             @if ($user->status == 1)
-                                                <button class="btn btn-success">Active</button>
+                                            <a href="{{ route('user.inactive', $user->id) }}"> <button class="btn btn-success">Active</button></a>
+                                               
                                             @else
-                                                <button @disabled(true) class="btn btn-danger">Not
-                                                    Active</button>
+                                            <a href="{{ route('user.active', $user->id) }}"> <button class="btn btn-danger">Not
+                                                Active</button></a>
+                                               
                                             @endif
                                         </td>
                                         <td>

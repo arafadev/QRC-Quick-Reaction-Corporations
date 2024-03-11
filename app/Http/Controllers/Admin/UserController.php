@@ -72,6 +72,28 @@ public function store(StoreUserRequest $request)
         return redirect()->route('users.index')->with($notification);
     }
 
+
+    public function inactive($id)
+    {
+        User::findOrFail($id)->update(['status' => User::$STATUS[0]]);
+        $notification = array(
+            'message' => 'User InActive Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function active($id)
+    {
+        User::findOrFail($id)->update(['status' => User::$STATUS[1]]);
+        $notification = array(
+            'message' => 'User Active Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
     public function delete($id)
     {
         $user  = User::findOrFail($id);
