@@ -63,15 +63,16 @@ class AdminController extends Controller
         } else {
             $filename = $old_img;
         }
-        Admin::findOrFail($id)->update([
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'image' => $filename,
-        ]);
+        $data = $request->validated();
+        $data['password'] = Hash::make($data['password']);
+        $data['image']= $filename;
+        $data['status'] = 1;
+        Admin::findOrFail($id)->update($data);
         $notification = array(
-            'message' => 'Admin Updated Successfully',
+            'message' => 'Admin  updated Successfully',
             'alert-type' => 'success'
         );
+
         return redirect()->route('admin.index')->with($notification);
     }
 

@@ -26,6 +26,8 @@ class AdminUpdateRequest extends FormRequest
         return [
             'email' => 'required|email|unique:admins,email,'. $this->id,
             'phone' => 'required|numeric',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

@@ -13,7 +13,7 @@
                                     <h6 class="mb-0">Name:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="{{ $admin->name }}" disabled />
+                                    <input type="text" class="form-control" name="name" value="{{ $admin->name }}"  />
                                 </div>
                             </div>
 
@@ -36,6 +36,33 @@
                                     <input type="number" name="phone" class="form-control" value="{{ $admin->phone }}" />
                                     @error('phone')
                                         <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Password: </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror" id="password" required
+                                        placeholder="New Password" />
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Confirm Password: </h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="password" name="password_confirmation" class="form-control" required
+                                        id="password_confirmation" placeholder="Confirm Password" />
+                                    @error('password_confirmation')
+                                        <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
