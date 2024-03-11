@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'user' . $i,
                 'email' => 'user' . $i . '@gmail.com',
                 'phone' => '987654321' . $i,
-                'image' => 'image.png',
+                'image' => 'upload/no_image.jpg',
                 'status' => 1,
             ]);
         }

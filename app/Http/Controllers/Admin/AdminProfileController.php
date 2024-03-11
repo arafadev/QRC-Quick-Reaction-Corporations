@@ -20,7 +20,8 @@ class AdminProfileController extends Controller
     {
         if ($request->file('image')) {
             $filename = $this->uploadImg($request->file('image'), 'upload/admin_images');
-            @unlink(public_path(auth()->user()->image));
+            if(auth()->user()->image !=  Admin::$DEFAULT_IMG)
+            @unlink(public_path(auth()->user()->image));  
         } else {
             $filename = auth()->user()->image;
         }

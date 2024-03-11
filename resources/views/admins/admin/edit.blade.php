@@ -1,12 +1,12 @@
 @extends('admins.master')
-@section('title', 'Admin Profile')
+@section('title', 'Edit Admin Page')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{ route('admin.profile.update', auth()->user()->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.update', $admin->id) }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-sm-3">
@@ -14,7 +14,6 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" value="{{ $admin->name }}" disabled />
-
                                 </div>
                             </div>
 
@@ -40,8 +39,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
 
                             <div class="row mb-3">
                                 <div class="col-sm-3">
@@ -77,12 +74,8 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 @section('js')
-
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#image').change(function(e) {
@@ -94,5 +87,4 @@
             });
         });
     </script>
-
 @endsection

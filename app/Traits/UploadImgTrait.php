@@ -6,11 +6,14 @@ trait UploadIMGTrait
 {
     public function uploadImg($file, $directory)
     {
-
         $filename = rand(1, 5000) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path($directory), $filename);
         return $directory . '/' . $filename;
-        
+    }
+
+    public function defaultImg()
+    {
+        return 'upload/no_image.jpg';
     }
 
 }

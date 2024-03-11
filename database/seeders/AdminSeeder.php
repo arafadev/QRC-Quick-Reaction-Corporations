@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
                'name' => 'Admin',
                'email'    => 'qrc@info.com',
                'phone'    => '12345678910',
-               'image'    => 'no_image.jpg',
+               'image'    => 'upload/no_image.jpg',
                'password' => Hash::make('qrcproject'),
                'status'     => 1,
         ]);

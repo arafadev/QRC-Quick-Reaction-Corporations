@@ -419,7 +419,6 @@
     </div>
     <!-- End Page-content -->
 @endsection
-
 @section('js')
 
     <!-- apexcharts -->

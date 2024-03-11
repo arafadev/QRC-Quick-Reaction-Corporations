@@ -6,12 +6,14 @@
             <!-- User details -->
             <div class="user-profile text-center mt-3">
                 <div class="">
-                    <img src="{{ asset('backend/assets/images/users/avatar-1.jpg') }}" alt=""
-                        class="avatar-md rounded-circle">
+                    <img src="{{ asset(auth()->user()->image) }}" alt="" class="avatar-md rounded-circle"
+                        style="width: 100px; height: 100px;">
+
                 </div>
                 <div class="mt-3">
                     <h4 class="font-size-16 mb-1">{{ auth()->user()->name }}</h4>
-                    <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
+                    <span class="text-muted"><i
+                            class="ri-record-circle-line align-middle font-size-14 text-success"></i>
                         Online</span>
                 </div>
             </div>
@@ -28,13 +30,14 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('admin.index') }}" class="waves-effect"> <i class="ri-account-circle-line"></i>
+                        <a href="{{ route('admin.index') }}" class="waves-effect "> <i
+                                class="ri-account-circle-line"></i>
                             <span>Admins</span>
                         </a>
                     </li>
-                    
+
                     <li>
-                        <a href="users.html" class="waves-effect"> <i class="ri-account-circle-line"></i>
+                        <a href="{{ route('users.index') }}" class="waves-effect"> <i class="ri-account-circle-line"></i>
                             <span>User</span>
                         </a>
                     </li>
