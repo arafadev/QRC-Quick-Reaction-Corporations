@@ -22,4 +22,8 @@ class User extends Authenticatable
         'status'
     ];
 
+    public static $STATUS = [0,1];
+    public static $DEFAULT_IMG = 'upload/no_image.jpg';
+
+
 }

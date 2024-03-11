@@ -11,9 +11,5 @@ trait UploadIMGTrait
         return $directory . '/' . $filename;
     }
 
-    public function defaultImg()
-    {
-        return 'upload/no_image.jpg';
-    }
 
 }

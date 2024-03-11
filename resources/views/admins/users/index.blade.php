@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Users</h4>
-                        <a href="{{ route('admin.create') }}"><button type="button"
+                        <a href="{{ route('user.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add User</button></a>
 
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
@@ -39,9 +39,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.edit', $user->id) }}"><button
+                                            <a href="{{ route('user.edit', $user->id) }}"><button
                                                     class="btn btn-secondary">Edit </button></a>
-                                            <a href="{{ route('admin.delete', $user->id) }}"><button
+                                            <a href="{{ route('user.delete', $user->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
 

@@ -33,5 +33,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('inactive/{id}', [AdminController::class, 'inactive'])->name('admin.inactive');
     Route::get('active/{id}', [AdminController::class, 'active'])->name('admin.active');
 
+    // Users
+    Route::get('users/index', [UserController::class, 'index'])->name('users.index');
+    Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('user/edit/{id}',   [UserController::class, 'edit'])->name('user.edit');
+    Route::post('user/update/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('user/inactive/{id}', [UserController::class, 'inactive'])->name('user.inactive');
+    Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+
+    Route::get('user/active/{id}', [UserController::class, 'active'])->name('user.active');
 
 });

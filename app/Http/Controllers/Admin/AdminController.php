@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Traits\UploadImgTrait;
@@ -16,7 +17,7 @@ class AdminController extends Controller
     use UploadImgTrait;
     public function index()
     {
-        return view('admins.admin.index', ['admins' => Admin::where('id', '!=' , auth()->user()->id)->get()]);
+        return view('admins.admin.index', ['admins' => Admin::where('id', '!=' , auth()->user()->id)->latest()->get()]);
     }
 
     public function create()
@@ -29,7 +30,7 @@ class AdminController extends Controller
         if ($request->file('image')) {
             $filename = $this->uploadImg($request->file('image'), 'upload/admin_images');
         } else {
-            $filename = $this->defaultImg();
+            $filename = Admin::$DEFAULT_IMG;
         }
 
         $data = $request->validated();
@@ -57,7 +58,8 @@ class AdminController extends Controller
         $old_img = Admin::where('id',$id)->value('image');
         if ($request->file('image')) {
             $filename = $this->uploadImg($request->file('image'), 'upload/admin_images');
-            @unlink(public_path($old_img));
+            if($old_img != User::$DEFAULT_IMG)
+            @unlink(public_path($old_img));  
         } else {
             $filename = $old_img;
         }
@@ -93,9 +95,6 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-
-
-
     public function delete($id)
     {
         $admin  = Admin::findOrFail($id);
