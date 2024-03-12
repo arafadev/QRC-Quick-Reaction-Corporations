@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Admins</h4>
+                        <h2>Admins</h2><hr>
                         <a href="{{ route('admin.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add Admin</button></a>
 

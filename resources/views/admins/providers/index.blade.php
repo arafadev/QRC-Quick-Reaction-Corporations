@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Admins</h4>
+                        <h2>Providers</h2><hr>
                         <a href="{{ route('provider.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add Provider</button></a>
 
@@ -34,11 +34,11 @@
                                         <td>{{ $provider->delivery_price }}</td>
                                         <td>
                                             @if ($provider->status == 1)
-                                                <a href="{{ route('admin.inactive', $provider->id) }}">
+                                                <a href="{{ route('provider.inactive', $provider->id) }}">
                                                     <button class="btn btn-success">Active</button>
                                                 </a>
                                             @else
-                                                <a href="{{ route('admin.active', $provider->id) }}">
+                                                <a href="{{ route('provider.active', $provider->id) }}">
 
                                                     <button class="btn btn-danger">Not
                                                         Active</button>
@@ -48,7 +48,7 @@
                                         <td>
                                             <a href="{{ route('provider.edit', $provider->id) }}"><button
                                                     class="btn btn-secondary">Edit </button></a>
-                                            <a href="{{ route('admin.delete', $provider->id) }}"><button
+                                            <a href="{{ route('provider.delete', $provider->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
 

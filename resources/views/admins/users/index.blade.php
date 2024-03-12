@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Users</h4>
+                        <h2>Users</h2><hr>
                         <a href="{{ route('user.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add User</button></a>
 

@@ -77,4 +77,40 @@ class ProviderController extends Controller
         return redirect()->route('providers.index')->with($notification);
     }
 
+    public function active($id)
+    {
+        Provider::findOrFail($id)->update(['status' => Provider::$STATUS[1]]);
+        $notification = array(
+            'message' => 'Provider Active Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+    
+    public function inactive($id)
+    {
+        Provider::findOrFail($id)->update(['status' => Provider::$STATUS[0]]);
+        $notification = array(
+            'message' => 'Provider InActive Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
+    public function delete($id)
+    {
+        $provider  = Provider::findOrFail($id);
+        if($provider->image !=  Provider::$DEFAULT_IMG)
+        @unlink(public_path($provider->image));      
+
+        $provider->delete();
+        $notification = array(
+            'message' => 'Provider Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+
 }

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ProviderController;
-use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProviderController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -50,6 +51,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::post('provider/store', [ProviderController::class, 'store'])->name('provider.store');
     Route::get('provider/edit/{id}',   [ProviderController::class, 'edit'])->name('provider.edit');
     Route::post('provider/update/{id}',   [ProviderController::class, 'update'])->name('provider.update');
+    Route::get('provider/delete/{id}', [ProviderController::class, 'delete'])->name('provider.delete');
+    Route::get('provider/active/{id}', [ProviderController::class, 'active'])->name('provider.active');
+    Route::get('provider/inactive/{id}', [ProviderController::class, 'inactive'])->name('provider.inactive');
+    
+
+    // Categories
+    Route::get('categories/index', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('category/edit/{id}',   [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('category/update/{id}',   [CategoryController::class, 'update'])->name('category.update');
+    Route::get('category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
 
 
 });

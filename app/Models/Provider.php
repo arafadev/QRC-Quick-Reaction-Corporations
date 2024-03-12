@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Provider extends Model
 {
@@ -26,5 +27,10 @@ class Provider extends Model
 
 public static $STATUS = [0,1];
 public static $DEFAULT_IMG = 'upload/no_image.jpg';
+
+public function categories()
+{
+    return $this->hasMany(Category::class);
+}
 
 }
