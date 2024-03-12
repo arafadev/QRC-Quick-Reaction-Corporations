@@ -6,9 +6,11 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Providers</h2><hr>
+                        <h2>Providers</h2>
+                        <hr>
                         <a href="{{ route('provider.create') }}"><button type="button"
-                                class="btn btn-primary waves-effect waves-light" style="float: right;">Add Provider</button></a>
+                                class="btn btn-primary waves-effect waves-light" style="float: right;">Add
+                                Provider</button></a>
 
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -16,6 +18,8 @@
                                 <tr>
                                     <th>Image </th>
                                     <th>Name</th>
+                                    <th>View Categories</th>
+                                    <th>View Services</th>
                                     <th>Email</th>
                                     <th>Avg Rate</th>
                                     <th>Delivery Price</th>
@@ -29,6 +33,11 @@
                                         <td><img src="{{ asset($provider->image) }}" width="50px" height="50px"
                                                 alt="Provider image"></td>
                                         <td>{{ $provider->name }}</td>
+                                        <td> <a href="{{ route('provider.inactive', $provider->id) }}">
+                                                <button class="btn btn-secondary">View Categories</button>
+                                            </a></td>  <td> <a href="{{ route('provider.inactive', $provider->id) }}">
+                                                <button class="btn btn-secondary">View Services</button>
+                                            </a></td>
                                         <td>{{ $provider->email }}</td>
                                         <td>{{ $provider->avg_rate }}</td>
                                         <td>{{ $provider->delivery_price }}</td>

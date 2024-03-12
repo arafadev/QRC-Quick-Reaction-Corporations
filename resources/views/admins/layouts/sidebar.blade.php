@@ -56,7 +56,7 @@
                     </li>
 
                     <li>
-                        <a href="fdsafs.html" class="waves-effect">
+                        <a href="{{ route('services.index') }}" class="waves-effect">
                             <i class="ri-account-circle-line"></i>
                             <span>Services</span>
                         </a>
