@@ -23,4 +23,8 @@ class Provider extends Model
     'status',
     'password'
 ];
+
+public static $STATUS = [0,1];
+public static $DEFAULT_IMG = 'upload/no_image.jpg';
+
 }

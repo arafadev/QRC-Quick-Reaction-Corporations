@@ -43,7 +43,7 @@
                     </li>
 
                     <li>
-                        <a href="providers.html" class="waves-effect">
+                        <a href="{{ route('providers.index') }}" class="waves-effect">
                             <i class="ri-account-circle-line"></i>
                             <span>Providers</span>
                         </a>

@@ -24,7 +24,7 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:admins,email,' . $this->user()->id,
+            'email' => 'required|email|unique:admins,email,' . $this->id,
             'phone' => 'required|numeric',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];

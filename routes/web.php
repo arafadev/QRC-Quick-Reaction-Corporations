@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProviderController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
@@ -42,5 +43,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     Route::get('user/active/{id}', [UserController::class, 'active'])->name('user.active');
     Route::get('user/inactive/{id}', [UserController::class, 'inactive'])->name('user.inactive');
+
+    // Providers
+    Route::get('providers/index', [ProviderController::class, 'index'])->name('providers.index');
+    Route::get('provider/create', [ProviderController::class, 'create'])->name('provider.create');
+    Route::post('provider/store', [ProviderController::class, 'store'])->name('provider.store');
+    Route::get('provider/edit/{id}',   [ProviderController::class, 'edit'])->name('provider.edit');
+    Route::post('provider/update/{id}',   [ProviderController::class, 'update'])->name('provider.update');
+
 
 });

@@ -6,6 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <h2>Add Admin Page</h2><hr>
                         <form method="POST" action="{{ route('admin.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">

@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 use DB;
+use App\Models\Provider;
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 class ProviderSeeder extends Seeder
 {
     /**
@@ -28,9 +30,9 @@ class ProviderSeeder extends Seeder
                 'delivery_price' => '25',
                 'rate_count'     => rand(5,30),
                 'avg_rate'       => rand(1,5),
-                'image'          => 'image.png',
+                'image'          => Provider::$DEFAULT_IMG,
                 'password'       => bcrypt('provider'),
-                'status'         => 1,
+                'status'         => Provider::$STATUS[array_rand(Provider::$STATUS)],
                 'created_at'     => Carbon::now(),
             ]);
         }
