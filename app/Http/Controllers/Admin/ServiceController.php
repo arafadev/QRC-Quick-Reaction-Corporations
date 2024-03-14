@@ -14,7 +14,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        return view('admins.services.index', ['services' => Service::where('status', Service::$STATUS[1])->latest()->get()]);
+        return view('admins.services.index', ['services' => Service::latest()->get()]);
     }
 
     public function create()
