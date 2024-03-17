@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CancelledOrderController;
+use App\Http\Controllers\Admin\FinishOrderController;
+use App\Http\Controllers\Admin\InProgressOrderController;
 use App\Http\Controllers\Admin\NewOrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -78,10 +81,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('service/delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
 
     // NewOrders 
-    Route::get('new/orders', [NewOrderController::class,'index'])->name('orders.new');
-    Route::get('new/order/show/{id}', [NewOrderController::class,'show'])->name('order.show');
+    Route::get('orders/new_orders', [NewOrderController::class,'index'])->name('new_orders.index');
+    Route::get('orders/new_order/show/{id}', [NewOrderController::class,'show'])->name('new_order.show');
+    // InProgress Order 
+    Route::get('orders/inprogress', [InProgressOrderController::class,'index'])->name('inprogress_orders.index');
+    Route::get('orders/inprogress_order/show/{id}', [InProgressOrderController::class,'show'])->name('inprogress_order.show');
 
+    // Finished Order 
+    Route::get('orders/finished', [FinishOrderController::class,'index'])->name('finished_orders.index');
+    Route::get('orders/finished/show/{id}', [FinishOrderController::class,'show'])->name('finished_order.show');
 
-
+    // Cancelled Order 
+    Route::get('orders/cancelled', [CancelledOrderController::class,'index'])->name('cancelled_orders.index');
+    Route::get('orders/cancelled/show/{id}', [FinishOrderController::class,'show'])->name('cancelled_order.show');
 
 });

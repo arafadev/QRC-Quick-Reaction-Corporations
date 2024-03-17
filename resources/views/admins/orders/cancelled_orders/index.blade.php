@@ -1,5 +1,5 @@
 @extends('admins.master')
-@section('title', 'New Order Page')
+@section('title', 'Cancelled Order Page')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -56,7 +56,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('new_order.show', $order->id) }}"> <button type="button"
+                                            <a href="{{ route('cancelled_order.show', $order->id) }}"> <button type="button"
                                                     class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                     Show

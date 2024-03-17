@@ -23,7 +23,7 @@ class OrderSeeder extends Seeder
         $cancelled_by = Order::$CANCELLED_BY;
         $type = ['normal', 'abnormal'];
 
-        for ($i = 1; $i <= 30; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             $orders[] = [
                 'user_id' => rand(1, 10), 
                 'provider_id' => rand(1, 5), 

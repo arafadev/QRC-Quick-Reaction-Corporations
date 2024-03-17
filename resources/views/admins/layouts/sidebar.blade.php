@@ -74,10 +74,10 @@
                             <span>Orders</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('orders.new') }}">New Orders</a></li>
-                            <li><a href="inprogress-orders.html">Inprogress Orders</a></li>
-                            <li><a href="finished-orders.html">Finished Orders</a></li>
-                            <li><a href="canceled-orderd.html">Canceled Ordered</a></li>
+                            <li><a href="{{ route('new_orders.index') }}">New Orders</a></li>
+                            <li><a href="{{ route('inprogress_orders.index') }}">Inprogress Orders</a></li>
+                            <li><a href="{{ route('finished_orders.index') }}">Finished Orders</a></li>
+                            <li><a href="{{ route('cancelled_orders.index') }}">Canceled Ordered</a></li>
                         </ul>
                     </li>
 
