@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Add Category Page</h2>
+                        <h2>Create Category Page</h2>
                         <hr>
                         <form method="POST" action="{{ route('category.store') }}">
                             @csrf

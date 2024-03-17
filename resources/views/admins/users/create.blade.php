@@ -1,11 +1,12 @@
 @extends('admins.master')
-@section('title', 'Create USer Page')
+@section('title', 'Create User Page')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <h2>Create User Page</h2><hr>
                         <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">

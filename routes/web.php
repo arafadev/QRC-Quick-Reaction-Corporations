@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NewOrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
@@ -75,6 +76,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('service/active/{id}', [ServiceController::class, 'active'])->name('service.active');
     Route::get('service/inactive/{id}', [ServiceController::class, 'inactive'])->name('service.inactive');
     Route::get('service/delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
+
+    // NewOrders 
+    Route::get('new/orders', [NewOrderController::class,'index'])->name('orders.new');
+    Route::get('new/order/show/{id}', [NewOrderController::class,'show'])->name('order.show');
 
 
 
