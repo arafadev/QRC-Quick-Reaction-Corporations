@@ -1,5 +1,12 @@
 @extends('admins.master')
 @section('title', 'Create Provider Page')
+@section('css')
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        #map { height: 400px; width: 100%; }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -121,13 +128,10 @@
                                     <h6 class="mb-0">Provider Location:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" id="map_desc" class="form-control" name="map_desc" value=""
-                                        placeholder="Enter Address">
-                                    <hr>
-                                    <div class="mb-2 mt-1" id="map" style="height: 500px;width: 800px;"></div>
-                                    <input type="hidden" id="lat" name="lat" value="">
-                                    <input type="hidden" id="lng" name="lng" value="">
-                                    {{-- End Google Map --}}
+                                    <div id='map'></div>
+                                        <input type="text" id="latitude" name="lat">
+                                        <input type="text" id="longitude" name="lng">
+                                        <input type="text" id="map_desc" name="map_desc">
                                 </div>
                             </div>
 
@@ -158,137 +162,76 @@
         });
     </script>
     <script>
-        function initMap() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(p) {
-                    const myLatlng = {
-                        lat: p.coords.latitude,
-                        lng: p.coords.longitude
-                    };
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYWIwMGQwIiwiYSI6ImNsdHVoNTM3NzFhcHUyaXVseGFkczg3aWUifQ.tQCDTO7PvIduAsBQVAKo3g';
 
-                    const map = new google.maps.Map(document.getElementById("map"), {
-                        zoom: 18,
-                        center: myLatlng,
-                        mapTypeControl: false,
-                        streetViewControl: false,
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            zoom: 12 // Initial zoom level
+        });
 
-                    });
+        // Add navigation controls to the map
+        map.addControl(new mapboxgl.NavigationControl());
 
-                    $('#lat').val(p.coords.latitude)
-                    $('#lng').val(p.coords.longitude)
-                    GetAddress(new google.maps.LatLng(p.coords.latitude, p.coords.longitude))
+        // Initialize marker variable
+        var marker = null;
 
-                    // var input = document.getElementById('searchTextField');
-                    // var autocomplete = new google.maps.places.Autocomplete(input);
-                    // const geocoder = new google.maps.Geocoder();
-                    //
-                    // document.getElementById("searchTextField").addEventListener("keyup", () => {
-                    // geocodeAddress(geocoder, map);
-                    // });
-                    //
-                    // document.getElementById("searchTextField").addEventListener("change", () => {
-                    // geocodeAddress(geocoder, map);
-                    // });
-
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(p.coords.latitude, p.coords.longitude),
-                        map: map,
-                        title: 'Set lat/lon values for this property',
-                        draggable: true,
-                        streetViewControl: false,
-
-                    });
-
-                    google.maps.event.addListener(marker, 'dragend', function(event) {
-                        document.getElementById("lat").value = this.getPosition().lat();
-                        document.getElementById("lng").value = this.getPosition().lng();
-                        GetAddress(new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition()
-                            .lng()))
-                    });
-
-                    google.maps.event.addListener(map, 'click', function(event) {
-                        $('#lat').val(event.latLng.lat())
-                        $('#lng').val(event.latLng.lng())
-                        GetAddress(new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()))
-                        marker.setPosition(event.latLng);
-                        map.setCenter(event.latLng);
-                        map.setZoom(18);
-
-                    });
+        // Function to fetch address based on coordinates
+        function fetchAddress(latitude, longitude) {
+            fetch(
+                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}`)
+                .then(response => response.json())
+                .then(data => {
+                    var address = data.features[0].place_name;
+                    document.getElementById('map_desc').value = address;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
+        }
+
+        // Function to handle map click event
+        function handleMapClick(e) {
+            var latitude = e.lngLat.lat;
+            var longitude = e.lngLat.lng;
+
+            // Remove the existing marker if it exists
+            if (marker) {
+                marker.remove();
             }
+
+            // Add a marker at the clicked location
+            marker = new mapboxgl.Marker()
+                .setLngLat([longitude, latitude])
+                .addTo(map);
+
+            // Update form inputs with selected coordinates and fetch address
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+            fetchAddress(latitude, longitude);
         }
 
-        function GetAddress(latlng) {
-            var geocoder = geocoder = new google.maps.Geocoder();
-            geocoder.geocode({
-                'latLng': latlng
-            }, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        $("#address").val(results[1].formatted_address);
-                        $("#address2").val(results[1].formatted_address);
-                        document.getElementById("searchTextField").value = results[1].formatted_address;
-                    }
-                }
-            });
-        }
+        // Get user's current location
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var defaultLongitude = position.coords.longitude;
+            var defaultLatitude = position.coords.latitude;
 
-        function geocodeAddress(geocoder, resultsMap) {
-            const address = document.getElementById("searchTextField").value;
-            geocoder.geocode({
-                address: address
-            }, (results, status) => {
-                if (status === "OK") {
+            map.setCenter([defaultLongitude, defaultLatitude]);
 
-                    $('#lat').val(results[0].geometry.location.lat())
-                    $('#lng').val(results[0].geometry.location.lng())
+            // Add a marker for the current location
+            marker = new mapboxgl.Marker()
+                .setLngLat([defaultLongitude, defaultLatitude])
+                .addTo(map);
 
-                    resultsMap.setCenter(results[0].geometry.location);
+            // Update form inputs with current coordinates and fetch address
+            document.getElementById('latitude').value = defaultLatitude;
+            document.getElementById('longitude').value = defaultLongitude;
+            fetchAddress(defaultLatitude, defaultLongitude);
+        });
 
-
-                    const myLatlng = {
-                        lat: results[0].geometry.location.lat(),
-                        lng: results[0].geometry.location.lng()
-                    };
-                    const map = new google.maps.Map(document.getElementById("map"), {
-                        zoom: 18,
-                        center: myLatlng,
-                        mapTypeControl: false,
-                        streetViewControl: false,
-
-                    });
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(results[0].geometry.location.lat(), results[0]
-                            .geometry.location.lng()),
-                        map: map,
-                        title: 'Set lat/lon values for this property',
-                        draggable: true,
-                        streetViewControl: false,
-                    });
-
-                    google.maps.event.addListener(marker, 'dragend', function(event) {
-                        document.getElementById("latitude").value = this.getPosition().lat();
-                        document.getElementById("longitude").value = this.getPosition().lng();
-                    });
-
-                    google.maps.event.addListener(map, 'click', function(event) {
-                        $('#lat').val(event.latLng.lat())
-                        $('#lng').val(event.latLng.lng())
-                        marker.setPosition(event.latLng);
-                        map.setCenter(event.latLng);
-                        map.setZoom(18);
-                    });
-                } else {
-                    alert("Geocode was not successful for the following reason: " + status);
-                }
-            });
-        }
+        // Add a marker on click to select location
+        map.on('click', handleMapClick);
     </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9_ve_oT3ynCaAF8Ji4oBuDjOhWEHE92U&callback=initMap"
-        type="text/javascript"></script>
-
     <!--tinymce js-->
     <script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
 

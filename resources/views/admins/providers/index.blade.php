@@ -21,6 +21,7 @@
                                     <th>View Categories</th>
                                     <th>View Services</th>
                                     <th>Email</th>
+                                    <th>Address</th>
                                     <th>Avg Rate</th>
                                     <th>Delivery Price</th>
                                     <th>Status</th>
@@ -39,6 +40,7 @@
                                                 <button class="btn btn-secondary">View Services</button>
                                             </a></td>
                                         <td>{{ $provider->email }}</td>
+                                        <td>{{ $provider->map_desc }}</td>
                                         <td>{{ $provider->avg_rate }}</td>
                                         <td>{{ $provider->delivery_price }}</td>
                                         <td>

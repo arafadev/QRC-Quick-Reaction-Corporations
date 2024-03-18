@@ -25,7 +25,6 @@ class ProviderController extends Controller
 
     public function store(StoreProviderRequest $request)
     {
-     
         if ($request->file('image')) {
             $filename = $this->uploadImg($request->file('image'), 'upload/providers_images');
         } else {

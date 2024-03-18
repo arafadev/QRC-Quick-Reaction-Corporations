@@ -122,7 +122,6 @@
 
                             </div>
                         </div>
-
                         <div class="row mb-3">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Vat Value:</h6>
@@ -159,8 +158,6 @@
                                     value="{{ $order->total_price }}EG" />
                             </div>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="card">
@@ -185,7 +182,6 @@
                                     value="{{ ucfirst($order->cancelled_by) }}" />
                             </div>
                         </div>
-                     
                         <div class="row mb-3">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Payment Method </h6>
