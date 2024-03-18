@@ -21,7 +21,6 @@ class OrderItemsSeeder extends Seeder
                 'order_id' =>rand(1,20),
                 'service_id' =>rand(1,20),
                 'price' => rand(200,600)
-
             ]);
 
         }

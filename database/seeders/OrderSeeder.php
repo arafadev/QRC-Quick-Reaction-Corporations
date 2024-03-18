@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,9 @@ class OrderSeeder extends Seeder
         $type = ['normal', 'abnormal'];
 
         for ($i = 1; $i <= 20; $i++) {
+            $now = Carbon::now();
+            $created_at = $now->subDays(rand(7, 30)); // Subtract random days between 7 and 30
+
             $orders[] = [
                 'user_id' => rand(1, 10), 
                 'provider_id' => rand(1, 5), 
@@ -46,9 +50,9 @@ class OrderSeeder extends Seeder
                 'type' => $type[array_rand($type)],
                 'approved_by_provider' => rand(0, 1),
                 'status' => $status[array_rand($status)],
-                'cancelled_by' => Order::$CANCELLED_BY[0],
+                'cancelled_by' => $cancelled_by[array_rand($cancelled_by)],
                 'payment_method' =>  'cash' , 
-                'created_at' => now(),
+                'created_at' => $created_at,
                 'updated_at' => now(),
             ];
         }

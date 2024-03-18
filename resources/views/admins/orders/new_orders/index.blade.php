@@ -19,7 +19,7 @@
                                     <th>Total Price</th>
                                     <th>Type</th>
                                     <th>Created</th>
-                                    <th>Cancelld By</th>
+                                    {{-- <th>Cancelld By</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -42,7 +42,7 @@
                                         </td>
                                         <td>{{ $order->created_at->translatedFormat('l, F jS, Y \a\t g:i A') }}</td>
 
-                                        <td>
+                                        {{-- <td>
                                             @if ($order->cancelled_by)
                                                 @if ($order->cancelled_by == App\Models\Order::$CANCELLED_BY[0])
                                                     <span class="btn btn-sm round btn-outline-secondary">
@@ -54,7 +54,7 @@
                                                     </span>
                                                 @endif
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <a href="{{ route('new_order.show', $order->id) }}"> <button type="button"
                                                     class="btn btn-primary">

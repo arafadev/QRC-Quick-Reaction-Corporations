@@ -61,12 +61,7 @@
                             <span>Services</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="complaints.html" class="waves-effect">
-                            <i class="ri-account-circle-line"></i>
-                            <span>Complaints</span>
-                        </a>
-                    </li>
+               
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
