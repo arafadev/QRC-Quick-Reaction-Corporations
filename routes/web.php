@@ -93,6 +93,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     // Cancelled Order 
     Route::get('orders/cancelled', [CancelledOrderController::class,'index'])->name('cancelled_orders.index');
-    Route::get('orders/cancelled/show/{id}', [FinishOrderController::class,'show'])->name('cancelled_order.show');
+    Route::get('orders/cancelled/show/{id}', [CancelledOrderController::class,'show'])->name('cancelled_order.show');
 
 });

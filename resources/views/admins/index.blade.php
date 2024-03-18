@@ -32,8 +32,8 @@
 
                             </div>
                             <div class="avatar-sm">
-                                <span class="avatar-title bg-light text-primary rounded-3">
-                                    <i class="ri-shopping-cart-2-line font-size-24"></i>
+                                <span class="avatar-title bg-light text-success rounded-3">
+                                    <i class="mdi mdi-currency-usd font-size-24"></i>
                                 </span>
                             </div>
                         </div>
@@ -50,8 +50,8 @@
 
                             </div>
                             <div class="avatar-sm">
-                                <span class="avatar-title bg-light text-success rounded-3">
-                                    <i class="mdi mdi-currency-usd font-size-24"></i>
+                                <span class="avatar-title bg-light text-primary rounded-3">
+                                    <i class="ri-shopping-cart-2-line font-size-24"></i>
                                 </span>
                             </div>
                         </div>
@@ -86,8 +86,8 @@
 
                             </div>
                             <div class="avatar-sm">
-                                <span class="avatar-title bg-light text-success rounded-3">
-                                    <i class="mdi mdi-currency-btc font-size-24"></i>
+                                <span class="avatar-title bg-light text-primary rounded-3">
+                                    <i class="ri-shopping-cart-2-line font-size-24"></i>
                                 </span>
                             </div>
                         </div>

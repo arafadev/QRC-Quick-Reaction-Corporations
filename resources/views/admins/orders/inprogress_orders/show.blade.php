@@ -194,15 +194,7 @@
                                     value="{{ $order->payment_method }}" />
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Payment Method </h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="email" class="form-control" disabled
-                                    value="{{ $order->payment_method }}" />
-                            </div>
-                        </div>
+                      
 
                     </div>
                 </div>

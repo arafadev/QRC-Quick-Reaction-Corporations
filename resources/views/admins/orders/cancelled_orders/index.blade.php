@@ -32,7 +32,7 @@
                                         <td>{{ $order->date }}</td>
                                         <td>{{ $order->total_price }}EG</td>
                                         <td>
-                                            @if ($order->status == 'normal')
+                                            @if ($order->type == 'normal')
                                                 <a href="{{ route('service.inactive', $order->id) }}"> <button
                                                         class="btn btn-success">Normal</button></a>
                                             @else
