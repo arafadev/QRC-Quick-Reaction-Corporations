@@ -27,12 +27,7 @@ class AdminController extends Controller
     
     public function store(StoreAdminRequest $request)
     {
-        if ($request->file('image')) {
-            $filename = $this->uploadImg($request->file('image'), 'upload/admin_images');
-        } else {
-            $filename = Admin::$DEFAULT_IMG;
-        }
-
+        $filename = $request->file('image') ? $this->uploadImg($request->file('image'), 'upload/admin_images'): Admin::$DEFAULT_IMG;
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
         $data['image']= $filename;
@@ -40,12 +35,10 @@ class AdminController extends Controller
         Admin::create($data);
         $notification = array(
             'message' => 'Admin  created Successfully',
-            'alert-type' => 'success'
+            'alert-type' => 'success'   
         );
 
         return redirect()->route('admin.index')->with($notification);
-      
-
     }
 
     public function edit($id)

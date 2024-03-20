@@ -29,7 +29,7 @@ class AdminLoginController extends Controller
             return redirect()->route('admin.dashboard')->with($notification);
         } else {
             return redirect()->back()->withInput()->withErrors(['loginError' => 'Invalid email or password.']);
-         } 
+        } 
     }
 
 

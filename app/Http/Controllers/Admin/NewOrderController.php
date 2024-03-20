@@ -10,7 +10,7 @@ class NewOrderController extends Controller
 {
     public function index()
     {
-        return view('admins.orders.new_orders.index', ['orders' => Order::where('status' , Order::$STATUS[0])->latest()->get()]);
+        return view('admins.orders.new_orders.index', ['orders' => Order::new()->latest()->get()]);
     }
     
     public function show($id)

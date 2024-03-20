@@ -6,7 +6,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Users</h2><hr>
+                        <h2>Users</h2>
+                        <hr>
                         <a href="{{ route('user.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add User</button></a>
 
@@ -32,12 +33,12 @@
                                         <td>{{ $user->phone }}</td>
                                         <td>
                                             @if ($user->status == 1)
-                                            <a href="{{ route('user.inactive', $user->id) }}"> <button class="btn btn-success">Active</button></a>
-                                               
+                                                <a href="{{ route('user.inactive', $user->id) }}"> <button
+                                                        class="btn btn-success">Active</button></a>
                                             @else
-                                            <a href="{{ route('user.active', $user->id) }}"> <button class="btn btn-danger">Not
-                                                Active</button></a>
-                                               
+                                                <a href="{{ route('user.active', $user->id) }}"> <button
+                                                        class="btn btn-danger">Not
+                                                        Active</button></a>
                                             @endif
                                         </td>
                                         <td>

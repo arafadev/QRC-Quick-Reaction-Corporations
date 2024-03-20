@@ -18,8 +18,7 @@
                                 <tr>
                                     <th>Image </th>
                                     <th>Name</th>
-                                    <th>View Categories</th>
-                                    <th>View Services</th>
+
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>Avg Rate</th>
@@ -34,14 +33,25 @@
                                         <td><img src="{{ asset($provider->image) }}" width="50px" height="50px"
                                                 alt="Provider image"></td>
                                         <td>{{ $provider->name }}</td>
-                                        <td> <a href="{{ route('provider.inactive', $provider->id) }}">
-                                                <button class="btn btn-secondary">View Categories</button>
-                                            </a></td>  <td> <a href="{{ route('provider.inactive', $provider->id) }}">
-                                                <button class="btn btn-secondary">View Services</button>
-                                            </a></td>
+
                                         <td>{{ $provider->email }}</td>
                                         <td>{{ $provider->map_desc }}</td>
-                                        <td>{{ $provider->avg_rate }}</td>
+                                        <td>
+                                            @if($provider->avg_rate >= 4.5)
+                                                <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+                                            @elseif($provider->avg_rate >= 3.5)
+                                                <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i>
+                                            @elseif($provider->avg_rate >= 2.5)
+                                                <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i>
+                                            @elseif($provider->avg_rate >= 1.5)
+                                                <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i>
+                                            @elseif($provider->avg_rate >= 0.5)
+                                                <i class="fas fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i>
+                                            @else
+                                                <i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i><i class="far fa-star text-warning"></i>
+                                            @endif
+                                        </td>
+                                        
                                         <td>{{ $provider->delivery_price }}</td>
                                         <td>
                                             @if ($provider->status == 1)
@@ -62,7 +72,6 @@
                                             <a href="{{ route('provider.delete', $provider->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>

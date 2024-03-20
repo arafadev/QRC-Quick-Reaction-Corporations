@@ -64,7 +64,7 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate font-size-14 mb-2">New Users</p>
-                                <h4 class="mb-2">{{ $usersCurrentWeek }}</h4>
+                                <h4 class="mb-2">{{ $usersLastWeek }}</h4>
 
                             </div>
                             <div class="avatar-sm">

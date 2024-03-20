@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admins.categories.create', ['providers' => Provider::where('status' , Provider::$STATUS[1])->latest()->get()]);
+        return view('admins.categories.create', ['providers' => Provider::active()->latest()->get()]);
     }
 
     public function store(StoreCategoryRequest $request)
@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category =  Category::findOrFail($id);
-        $providers = Provider::where('status' , Provider::$STATUS[1])->latest()->get();
+        $providers = Provider::active()->latest()->get();
     return view('admins.categories.edit', compact('category', 'providers'));
     }
 

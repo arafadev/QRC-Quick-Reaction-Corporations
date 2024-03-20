@@ -26,10 +26,10 @@ class AdminDashboardController extends Controller
             $finishedOrdersLastMonth_profits = Order::where('status', 'finished')
             ->whereBetween('created_at', [now()->subMonth()->startOfMonth(), now()->subMonth()->endOfMonth()])
             ->sum('total_price');
-         $usersCurrentWeek = User::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->count();
+            $usersLastWeek = User::where('created_at', '>=', now()->subDays(7))->count();
 
          $orders =  Order::where('status' , Order::$STATUS[2])->latest()->get();
 
-        return view('admins.index' ,compact('total_sales', 'new_orders', 'finished_orders', 'usersCurrentWeek', 'finishedOrdersLastWeek', 'finishedOrdersLastMonth', 'finishedOrdersLastWeek_profits', 'finishedOrdersLastMonth_profits', 'orders'));
+        return view('admins.index' ,compact('total_sales', 'new_orders', 'finished_orders', 'usersLastWeek', 'finishedOrdersLastWeek', 'finishedOrdersLastMonth', 'finishedOrdersLastWeek_profits', 'finishedOrdersLastMonth_profits', 'orders'));
     }
 }

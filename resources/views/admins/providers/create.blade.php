@@ -129,11 +129,12 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div id='map'></div>
-                                        <input type="text" id="latitude" name="lat">
-                                        <input type="text" id="longitude" name="lng">
-                                        <input type="text" id="map_desc" name="map_desc">
+                                        <input type="hidden" id="latitude" name="lat">
+                                        <input type="hidden" id="longitude" name="lng">
+                                        <input type="hidden" id="map_desc" name="map_desc">
                                 </div>
                             </div>
+                            {{-- End Google Map --}}
 
                             <div class="row">
                                 <div class="col-sm-3"></div>

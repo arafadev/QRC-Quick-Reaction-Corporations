@@ -14,5 +14,12 @@ class Admin extends Authenticatable
     public static $DEFAULT_IMG = 'upload/no_image.jpg';
     public static $STATUS = [0,1];
 
-    
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 0);
+    }
     }

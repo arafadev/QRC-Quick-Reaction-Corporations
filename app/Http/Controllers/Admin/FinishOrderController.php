@@ -10,7 +10,7 @@ class FinishOrderController extends Controller
 {
     public function index()
     {
-        return view('admins.orders.finished_orders.index', ['orders' => Order::where('status' , Order::$STATUS[2])->latest()->get()]);
+        return view('admins.orders.finished_orders.index', ['orders' => Order::finished()->latest()->get()]);
     }
     
     public function show($id)

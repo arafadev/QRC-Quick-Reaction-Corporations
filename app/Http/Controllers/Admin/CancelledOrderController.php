@@ -11,7 +11,7 @@ class CancelledOrderController extends Controller
     
     public function index()
     {
-        return view('admins.orders.cancelled_orders.index', ['orders' => Order::where('status' , Order::$STATUS[3])->latest()->get()]);
+        return view('admins.orders.cancelled_orders.index', ['orders' => Order::cancelled()->latest()->get()]);
     }
     
     public function show($id)

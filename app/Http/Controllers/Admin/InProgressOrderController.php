@@ -10,7 +10,7 @@ class InProgressOrderController extends Controller
 {
     public function index()
     {
-        return view('admins.orders.inprogress_orders.index', ['orders' => Order::where('status' , Order::$STATUS[1])->latest()->get()]);
+        return view('admins.orders.inprogress_orders.index', ['orders' => Order::inprogress()->latest()->get()]);
     }
     
     public function show($id)

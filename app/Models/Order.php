@@ -42,7 +42,7 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    
     public function provider()
     {
         return $this->belongsTo(Provider::class);
@@ -53,4 +53,21 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function scopeNew($query)
+    {
+        return $query->where('status','new');
+    }
+    public function scopeInprogress($query)
+    {
+        return $query->where('status', 'finished');
+    }
+    public function scopeFinished($query)
+    {
+        return $query->where('status', 'finished');
+    }
+    public function scopeCancelled($query)
+    {
+        return $query->where('status', 'cancelled');
+    }
+    
 }

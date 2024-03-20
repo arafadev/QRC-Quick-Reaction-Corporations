@@ -17,4 +17,13 @@ class Category extends Model
         return $this->belongsTo(Provider::class);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    public function scopeInactive($query)
+    {
+        return $query->where('status', 0);
+    }
+
 }

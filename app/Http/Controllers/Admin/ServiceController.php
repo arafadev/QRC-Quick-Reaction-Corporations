@@ -19,8 +19,8 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $categories =  Category::where('status', Category::$STATUS[1])->get();
-        $providers = Provider::where('status' , Provider::$STATUS[1])->latest()->get();
+        $categories =  Category::active()->get();
+        $providers = Provider::active()->latest()->get();
         return view('admins.services.create', compact('categories', 'providers'));
     }
 
@@ -38,8 +38,8 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::findOrFail($id);
-        $categories =  Category::where('status', Category::$STATUS[1])->get();
-        $providers = Provider::where('status' , Provider::$STATUS[1])->latest()->get();
+        $categories =  Category::active()->get();
+        $providers = Provider::active()->latest()->get();
         return view('admins.services.edit', compact('service','categories', 'providers'));
     }
 

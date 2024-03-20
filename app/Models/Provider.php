@@ -33,4 +33,12 @@ public function categories()
     return $this->hasMany(Category::class);
 }
 
+public function scopeActive($query)
+{
+    return $query->where('status', 1);
+}
+public function scopeInactive($query)
+{
+    return $query->where('status', 0);
+}
 }
