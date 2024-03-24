@@ -19,16 +19,19 @@ class ServiceSeeder extends Seeder
     {
         $providers = Provider::all();
         $categories = Category::all();
-        for($i = 0; $i <= 20; $i++){
-            $provider = $providers->random();
-            $category = $categories->random();
-            Service::create([
-                'name'=> 'service'. ($i + 1),
-                'provider_id' => $provider->id,
-                'category_id' => $category->id,
-                'price' => rand(100,400),
-                'status' => Service::$STATUS[1],
-            ]);
+        foreach ($providers as $provider) {
+            $providerCategories = $categories->random(3);
+            foreach ($providerCategories as $category) {
+                for ($i = 0; $i < 3; $i++) {
+                    Service::create([
+                        'name' => 'service' . ($i + 1),
+                        'provider_id' => $provider->id,
+                        'category_id' => $category->id,
+                        'price' => rand(100, 400),
+                        'status' => Service::$STATUS[1],
+                    ]);
+                }
+            }
         }
-    }
+    }   
 }

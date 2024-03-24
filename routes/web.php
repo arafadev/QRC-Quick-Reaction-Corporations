@@ -27,7 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('profile', [AdminProfileController::class, 'index'])->name('admin.profile');
-    Route::post('profile/{id}', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::post('profile/{id}', [AdminProfileController::class, 'update'])->name('azdmin.profile.update');
     Route::get('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
     // Admins

@@ -1,19 +1,16 @@
 <?php
 
+use App\Models\Provider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\ProviderController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('intros', [SettingController::class, 'intros']);
+Route::post('home', [ProviderController::class, 'home']);
+Route::post('provider-details', [ProviderController::class, 'providerDetails']);
+Route::post('show-provider-categories', [OrderController::class, 'showProviderServices']);
+Route::post('calculate-order', [OrderController::class, 'calculateOrder']);
+

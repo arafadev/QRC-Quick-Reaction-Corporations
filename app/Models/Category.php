@@ -26,4 +26,8 @@ class Category extends Model
         return $query->where('status', 0);
     }
 
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
 }

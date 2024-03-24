@@ -19,11 +19,16 @@ class User extends Authenticatable
         'phone',
         'image',
         'blocked',
+        'social_id',
         'status'
     ];
 
     public static $STATUS = [0,1];
     public static $DEFAULT_IMG = 'upload/no_image.jpg';
 
+    public function isActive()
+    {
+        return $this->status;
+    }
 
 }
