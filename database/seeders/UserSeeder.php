@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     {
         for ($i = 1; $i <= 20; $i++) {
             $now = Carbon::now();
-            $created_at = $now->subDays(rand(7, 30)); // Subtract random days between 7 and 30
+            $created_at = $now->subDays(rand(7, 30));
             DB::table('users')->insert([
                 'name' => 'user' . $i,
                 'email' => 'user' . $i . '@gmail.com',

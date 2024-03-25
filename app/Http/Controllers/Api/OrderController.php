@@ -22,7 +22,10 @@ class OrderController extends Controller
     use ResponseTrait;
     public function showProviderServices(ProviderServiceRequest $request)
     {
-        return $this->successData( CategoryResource::collection(Category::whereHas('services')->with('services')->get()));
+        return $this->successData( CategoryResource::collection(Category::whereHas('services')
+        ->with('services')
+        ->where('provider_id', $request->provider_id)
+        ->get()));
     }
 
     public function calculateOrder(OrderRequest $request)
