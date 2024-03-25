@@ -17,7 +17,7 @@ class OrderService
         $vat_value = ($items_price *  5) / 100; 
         $orderItems = [];
         foreach ($serviceAndPrice as $key => $item) {
-            $orderItems[$key]['service_id'] = $item->service_id;
+            $orderItems[$key]['service_id'] = $item->id;
             $orderItems[$key]['price'] = $item->price;
         }
         return [

@@ -6,14 +6,15 @@ namespace App\Traits\Api;
         public function successData($data = [], $statusCode = 200)
         {
             return response()->json([
+                'msg' => 'Data Sended Successfully',
                 'data' => $data,
             ], $statusCode);
         }
     
-        public function successMsg($statusCode = 200)
+        public function successMsg($msg,$statusCode = 200)
         {
             return response()->json([
-                'message' => 'success msg here',
+                'message' => $msg,
             ], $statusCode);
         }
     

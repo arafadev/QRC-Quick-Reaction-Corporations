@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('hospital_lng', 100)->nullable();
             $table->string('hospital_lat', 100)->nullable();
 
-            $table->date('date')->nullable();
+            $table->date('date');
             $table->time('time')->nullable();
 
             $table->text('notes')->nullable();

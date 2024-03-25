@@ -30,5 +30,9 @@ class User extends Authenticatable
     {
         return $this->status;
     }
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
 
 }
