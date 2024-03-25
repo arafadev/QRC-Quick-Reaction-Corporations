@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Order;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -47,8 +48,8 @@ return new class extends Migration
             $table->boolean('approved_by_provider')->default(0);
             // $table->boolean('is_settlement')->default(0);
             // $table->boolean('is_paid')->default(0);
-            $table->enum('status', ['new', 'inprogress', 'finished', 'cancelled'])->default('new');
-            $table->enum('cancelled_by', ['user', 'provider'])->nullable();
+            $table->enum('status', Order::$STATUS)->default('new');
+            $table->enum('cancelled_by',Order::$CANCELLED_BY)->nullable();
             $table->string('payment_method')->default('cash');
 
             $table->timestamp('created_at')->useCurrent();

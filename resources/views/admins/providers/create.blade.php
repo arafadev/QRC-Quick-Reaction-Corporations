@@ -4,7 +4,10 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
     <style>
-        #map { height: 400px; width: 100%; }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
     </style>
 @endsection
 @section('content')
@@ -22,8 +25,11 @@
                                     <h6 class="mb-0">Name:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" required name="name"
-                                        value="{{ old('name') }}" />
+                                    <input type="text"
+                                        class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
+                                        value="{{ old('name') }}" /> @error('name')
+                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -32,7 +38,7 @@
                                     <h6 class="mb-0">Email:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="email" name="email" required class="form-control"
+                                    <input type="email" name="email"  class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
                                         value="{{ old('email') }}" />
                                     @error('email')
                                         <div class="bg-red-100 text-red-500">{{ $message }}</div>
@@ -44,7 +50,7 @@
                                     <h6 class="mb-0">Phone: </h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="number" name="phone" required class="form-control"
+                                    <input type="number" name="phone" required class="form-control  {{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                         value="{{ old('phone') }}" />
                                     @error('phone')
                                         <div class="bg-red-100 text-red-500">{{ $message }}</div>
@@ -67,7 +73,7 @@
                                     <h6 class="mb-0">Delivery Price: </h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="number" name="delivery_price" required class="form-control"
+                                    <input type="number" name="delivery_price" required class="form-control  {{ $errors->has('delivery_price') ? ' is-invalid' : '' }}"
                                         value="{{ old('delivery_price') }}" />
                                     @error('delivery_price')
                                         <div class="bg-red-100 text-red-500">{{ $message }}</div>
@@ -129,9 +135,9 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div id='map'></div>
-                                        <input type="hidden" id="latitude" name="lat">
-                                        <input type="hidden" id="longitude" name="lng">
-                                        <input type="hidden" id="map_desc" name="map_desc">
+                                    <input type="hidden" id="latitude" name="lat">
+                                    <input type="hidden" id="longitude" name="lng">
+                                    <input type="hidden" id="map_desc" name="map_desc">
                                 </div>
                             </div>
                             {{-- End Google Map --}}
@@ -180,7 +186,8 @@
         // Function to fetch address based on coordinates
         function fetchAddress(latitude, longitude) {
             fetch(
-                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}`)
+                    `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}`
+                    )
                 .then(response => response.json())
                 .then(data => {
                     var address = data.features[0].place_name;

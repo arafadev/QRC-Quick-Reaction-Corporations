@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\CancelledOrderController;
-use App\Http\Controllers\Admin\FinishOrderController;
-use App\Http\Controllers\Admin\InProgressOrderController;
-use App\Http\Controllers\Admin\NewOrderController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\NewOrderController;
 use App\Http\Controllers\Admin\ProviderController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\FinishOrderController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\CancelledOrderController;
+use App\Http\Controllers\Admin\InProgressOrderController;
 
 
 Route::redirect('/', '/admin/login');
@@ -96,3 +97,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('orders/cancelled/show/{id}', [CancelledOrderController::class,'show'])->name('cancelled_order.show');
 
 });
+

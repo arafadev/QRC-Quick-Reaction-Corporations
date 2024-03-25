@@ -15,4 +15,3 @@ Route::post('show-provider-categories', [OrderController::class, 'showProviderSe
 Route::post('calculate-order', [OrderController::class, 'calculateOrder']);
 Route::post('create-order', [OrderController::class, 'createOrder']);
 Route::post('order-details', [OrderController::class, 'orderDetails']);
-
