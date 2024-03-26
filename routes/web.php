@@ -4,6 +4,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\IntroController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewOrderController;
@@ -28,9 +29,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('profile', [AdminProfileController::class, 'index'])->name('admin.profile');
-    Route::post('profile/{id}', [AdminProfileController::class, 'update'])->name('azdmin.profile.update');
+    Route::post('profile/{id}', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     Route::get('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-
+    
+    // Intros
+    Route::get('intros', [IntroController::class,'index'])->name('intros.index');
+    Route::get('intro/create', [IntroController::class, 'create'])->name('intro.create');
+    Route::post('intro/store', [IntroController::class, 'store'])->name('intro.store');
+    Route::get('intro/edit/{id}', [IntroController::class, 'edit'])->name('intro.edit');
+    Route::post('intro/update/{id}', [IntroController::class, 'update'])->name('intro.update');
+    Route::get('intro/delete/{id}', [IntroController::class, 'delete'])->name('intro.delete');
+    
     // Admins
     Route::get('/index', [AdminController::class, 'index'])->name('admin.index');
     Route::get('create', [AdminController::class, 'create'])->name('admin.create');

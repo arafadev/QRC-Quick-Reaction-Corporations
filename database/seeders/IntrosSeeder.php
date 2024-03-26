@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Intro;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,7 @@ class IntrosSeeder extends Seeder
             $randomDescription = $descriptions[array_rand($descriptions)];
 
             $introsData[] = [
-                'image' => 'image' . $i . '.jpg',
+                'image' => Intro::$DEFAULT_IMG,
                 'title' => 'Introduction ' . $i,
                 'description' => $randomDescription,
                 'created_at' => now(),

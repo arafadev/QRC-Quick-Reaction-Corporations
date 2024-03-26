@@ -13,7 +13,7 @@ class SettingController extends Controller
     use ResponseTrait;
     public function intros()
     {
-      $intros = IntroResource::collection(Intro::latest()->get());
+      $intros = IntroResource::collection(Intro::latest()->limit(3)->get());
       return $this->successData($intros);
     }
 }

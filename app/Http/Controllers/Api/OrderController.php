@@ -20,7 +20,7 @@ use App\Http\Requests\Api\ProviderServiceRequest;
 class OrderController extends Controller
 {
     use ResponseTrait;
-    public function showProviderServices(ProviderServiceRequest $request)
+public function showProviderServices(ProviderServiceRequest $request)
     {
         return $this->successData( CategoryResource::collection(Category::whereHas('services')
         ->with('services')

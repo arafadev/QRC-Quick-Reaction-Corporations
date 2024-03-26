@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Intro extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['title', 'image', 'description'];
+    public static $DEFAULT_IMG = 'upload/no_image.jpg';
+
 }
