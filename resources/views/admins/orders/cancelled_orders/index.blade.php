@@ -33,10 +33,10 @@
                                         <td>{{ $order->total_price }}EG</td>
                                         <td>
                                             @if ($order->type == 'normal')
-                                                <a href="{{ route('service.inactive', $order->id) }}"> <button
+                                                <a href="{{ route('service.inactive', $order->id) }}"> <button disabled
                                                         class="btn btn-success">Normal</button></a>
                                             @else
-                                                <a href="{{ route('service.active', $order->id) }}"> <button
+                                                <a href="{{ route('service.active', $order->id) }}"> <button disabled
                                                         class="btn btn-danger">AbNormal</button></a>
                                             @endif
                                         </td>

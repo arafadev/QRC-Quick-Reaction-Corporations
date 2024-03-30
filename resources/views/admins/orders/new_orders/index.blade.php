@@ -33,11 +33,9 @@
                                         <td>{{ $order->total_price }}EG</td>
                                         <td>
                                             @if ($order->type == 'normal')
-                                                <a href="{{ route('service.inactive', $order->id) }}"> <button
-                                                        class="btn btn-success">Normal</button></a>
+                                                <a href="#"> <button disabled class="btn btn-success">Normal</button></a>
                                             @else
-                                                <a href="{{ route('service.active', $order->id) }}"> <button
-                                                        class="btn btn-danger">AbNormal</button></a>
+                                                <a href="#"> <button disabled class="btn btn-danger">AbNormal</button></a>
                                             @endif
                                         </td>
                                         <td>{{ $order->created_at->translatedFormat('l, F jS, Y \a\t g:i A') }}</td>

@@ -84,8 +84,7 @@
                                 <h6 class="mb-0">Note: </h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <textarea disabled rows="5" cols="30">{{ $order->notes }}</textarea>
-                                <!-- Adjust the number of columns (cols) as needed -->
+                                <textarea id="elm1" disabled name="notes">{{ $order->notes }}</textarea>                              
                                 @error('note')
                                     <div class="bg-red-100 text-red-500">{{ $message }}</div>
                                 @enderror
@@ -207,4 +206,11 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+<!-- init js -->
+<script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
 @endsection

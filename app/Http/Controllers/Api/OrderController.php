@@ -20,47 +20,47 @@ use App\Http\Requests\Api\ProviderServiceRequest;
 class OrderController extends Controller
 {
     use ResponseTrait;
-public function showProviderServices(ProviderServiceRequest $request)
+    public function showProviderServices(ProviderServiceRequest $request)
     {
-        return $this->successData( CategoryResource::collection(Category::whereHas('services')
-        ->with('services')
-        ->where('provider_id', $request->provider_id)
-        ->get()));
+        return $this->successData(CategoryResource::collection(Category::whereHas('services')
+            ->with('services')
+            ->where('provider_id', $request->provider_id)
+            ->get()));
     }
 
     public function calculateOrder(OrderRequest $request)
     {
 
-         $calculateOrderPrice = (new OrderService())->calculateOrderPrice($request->service_ids, $request->provider_id);
-         return $this->successData( [
-            'services'       => ServicePriceResource::collection($calculateOrderPrice['serviceAndPrice']),
+        $calculateOrderPrice = (new OrderService())->calculateOrderPrice($request->service_ids, $request->provider_id);
+        return $this->successData([
+            'services' => ServicePriceResource::collection($calculateOrderPrice['serviceAndPrice']),
             'shipping_price' => $calculateOrderPrice['shipping_price'],
-            'items_price'    => $calculateOrderPrice['items_price'],
-            'vat_value'      => $calculateOrderPrice['vat_value'],
-            'total'         =>  $calculateOrderPrice['total_price'],
-            'provider'     => new ProviderResource($calculateOrderPrice['provider']),
+            'items_price' => $calculateOrderPrice['items_price'],
+            'vat_value' => $calculateOrderPrice['vat_value'],
+            'total' => $calculateOrderPrice['total_price'],
+            'provider' => new ProviderResource($calculateOrderPrice['provider']),
         ]);
     }
 
-    
+
     public function createOrder(CreateOrderRequest $request)
     {
-        $calculateOrderPrice =  (new OrderService())->calculateOrderPrice($request->service_ids, $request->provider_id);
+        $calculateOrderPrice = (new OrderService())->calculateOrderPrice($request->service_ids, $request->provider_id);
         $type = isset($request->hospital_map_desc) && isset($request->hospital_lat) && isset($request->hospital_lng) ? 'normal' : 'abnormal';
 
-        $order =    Order::create(
+        $order = Order::create(
             $request->validated() +
-            ['user_id' => 1]+
-            ['items_price' => $calculateOrderPrice['items_price']] + 
+            ['user_id' => 1] +
+            ['items_price' => $calculateOrderPrice['items_price']] +
             ['shipping_price' => $calculateOrderPrice['shipping_price']] +
             ['vat_value_ratio' => $calculateOrderPrice['vat_value_ratio']] +
             ['app_commission' => $calculateOrderPrice['app_commission']] +
             ['vat_value' => $calculateOrderPrice['vat_value']] +
             ['type' => $type] +
-            ['order_num' => 'ORD' . str_pad(rand(1,100), 3, '0', STR_PAD_LEFT) ] +
+            ['order_num' => 'ORD' . str_pad(rand(1, 100), 3, '0', STR_PAD_LEFT)] +
             ['total_price' => $calculateOrderPrice['total_price']],
-            
-    );
+
+        );
         $order->orderItems()->createMany($calculateOrderPrice['order_items']);
         return $this->successMsg('Order Created Successfully');
     }
@@ -91,4 +91,5 @@ public function showProviderServices(ProviderServiceRequest $request)
     //     Order::findOrFail($order_id)->update(['cancelled_by' => 'user']);
     //     return $this->successMsg('تم الغاء الطلب بنجاح');
     // }
+    
 }

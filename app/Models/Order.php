@@ -59,7 +59,7 @@ class Order extends Model
     }
     public function scopeInprogress($query)
     {
-        return $query->where('status', 'finished');
+        return $query->where('status', 'inprogress');
     }
     public function scopeFinished($query)
     {
@@ -77,7 +77,6 @@ class Order extends Model
         $longitudeTo,
         $earthRadius = 6371000
     ) {
-        // convert from degrees to radians
         $latFrom = deg2rad($latitudeFrom);
         $lonFrom = deg2rad($longitudeFrom);
         $latTo = deg2rad($latitudeTo);
