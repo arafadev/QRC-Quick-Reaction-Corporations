@@ -24,7 +24,7 @@
                     </a>
                 </li>
 
-                <li class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
                     <a href="{{ route('users.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>User</span>

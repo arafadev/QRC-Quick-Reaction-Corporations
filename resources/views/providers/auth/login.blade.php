@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="auth-body-bg">
+<body class="auth-body-bg provider_background">
     <div class="bg-overlay"></div>
     <div class="wrapper-page">
         <div class="container-fluid p-0">
