@@ -1,4 +1,4 @@
-@extends('admins.master')
+@extends('providers.master')
 @section('title', 'Show Order Page')
 @section('content')
     <div class="container-fluid">
@@ -84,7 +84,7 @@
                                 <h6 class="mb-0">Note: </h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <textarea id="elm1" name="description">{{ $order->notes }}</textarea>                  
+                                <textarea id="elm1" name="description">{{ $order->notes }}</textarea>
                                 @error('note')
                                     <div class="bg-red-100 text-red-500">{{ $message }}</div>
                                 @enderror
@@ -195,19 +195,42 @@
                 </div>
             </div>
             <div class="col-lg-12 text-center mt-3 mb-3">
-                <a href="{{ redirect()->back()->getTargetUrl() }}">
-                    <button class="btn btn-primary center" style="color: white !important;">
-                        <h3>Back</h3>
-                    </button>
-                </a>
+
+                @if ($order->status == App\Models\Order::$STATUS[0])
+                    <div class="col-lg-12 text-center mt-3 mb-3">
+                        <a href="{{ route('order.accept', $order->id) }}">
+                            <button class="btn btn-primary center" style="color: white !important; margin-right: 5px;">
+                                <h3>Accept Order</h3>
+                            </button>
+                        </a>
+                        <a href="{{ route('order.cancelled', $order->id) }}">
+                            <button class="btn btn-danger center" style="color: white !important;">
+                                <h3>Cancelled Order</h3>
+                            </button>
+                        </a>
+                    </div>
+                @elseif ($order->status == App\Models\Order::$STATUS[2] || $order->status == App\Models\Order::$STATUS[3])
+                    <a href="{{ route('new_orders.index') }}">
+                        <button class="btn btn-primary center" style="color: white !important;">
+                            <h3>Back</h3>
+                        </button>
+                    </a>
+                @elseif ($order->status == App\Models\Order::$STATUS[1])
+                    <a href="{{ route('order.accept_finished', $order->id) }}">
+                        <button class="btn btn-primary center" style="color: white !important;">
+                            <h3>Finished Order</h3>
+                        </button>
+                    </a>
+                @endif
             </div>
+
         </div>
     </div>
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
-<!-- init js -->
-<script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
+    <!-- init js -->
+    <script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
 @endsection

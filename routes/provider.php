@@ -3,7 +3,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Provider\UserController;
 use App\Http\Controllers\Provider\ServiceController;
 use App\Http\Controllers\Provider\CategoryController;
+use App\Http\Controllers\Provider\NewOrderController;
 use App\Http\Controllers\ProviderDashboardController;
+use App\Http\Controllers\Admin\CancelledOrderController;
+use App\Http\Controllers\Provider\FinishOrderController;
+use App\Http\Controllers\Provider\InProgressOrderController;
 use App\Http\Controllers\Auth\Provider\ProviderLoginController;
 
 
@@ -22,6 +26,8 @@ Route::group(['prefix' => 'provider', 'middleware' => 'auth:provider'], function
     Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::get('category/active/{id}', [CategoryController::class, 'active'])->name('category.active');
+    Route::get('category/inactive/{id}', [CategoryController::class, 'inactive'])->name('category.inactive');
     Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::get('category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
 
@@ -35,12 +41,23 @@ Route::group(['prefix' => 'provider', 'middleware' => 'auth:provider'], function
     Route::post('service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::get('service/delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
 
+    // NewOrders 
+    Route::get('orders/new_orders', [NewOrderController::class, 'index'])->name('new_orders.index');
+    Route::get('orders/new_order/show/{id}', [NewOrderController::class, 'show'])->name('new_order.show');
+    Route::get('orders/accept/order/{id}', [NewOrderController::class, 'accept_order'])->name('order.accept');
+    Route::get('orders/accept/order_finished/{id}', [NewOrderController::class, 'finished_order'])->name('order.accept_finished');
+    Route::get('orders/accept/order_cancelled/{id}', [NewOrderController::class, 'cancelled_order'])->name('order.cancelled');
 
+    // InProgress Order 
+    Route::get('orders/inprogress', [InProgressOrderController::class, 'index'])->name('inprogress_orders.index');
+    Route::get('orders/inprogress_order/show/{id}', [InProgressOrderController::class, 'show'])->name('inprogress_order.show');
 
+    // Finished Order 
+    Route::get('orders/finished', [FinishOrderController::class, 'index'])->name('finished_orders.index');
+    Route::get('orders/finished/show/{id}', [FinishOrderController::class, 'show'])->name('finished_order.show');
 
-
-
-
-
+    // Cancelled Order 
+    Route::get('orders/cancelled', [CancelledOrderController::class, 'index'])->name('cancelled_orders.index');
+    Route::get('orders/cancelled/show/{id}', [CancelledOrderController::class, 'show'])->name('cancelled_order.show');
 
 });

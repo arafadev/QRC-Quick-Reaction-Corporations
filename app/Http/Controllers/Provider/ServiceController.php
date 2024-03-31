@@ -18,7 +18,7 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $categories = Category::active()->get();
+        $categories = Category::where('provider_id', auth()->user()->id)->active()->get();
         return view('providers.services.create', ['categories' => $categories]);
     }
 

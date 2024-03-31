@@ -37,6 +37,26 @@ class CategoryController extends Controller
     {
         return view('providers.categories.edit', ['category' => Category::findOrFail($id)]);
     }
+    public function active($id)
+    {
+        Category::findOrFail($id)->update(['status' => Category::$STATUS[1]]);
+        $notification = array(
+            'message' => 'Category Active Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function inactive($id)
+    {
+        Category::findOrFail($id)->update(['status' => Category::$STATUS[0]]);
+        $notification = array(
+            'message' => 'Category InActive Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
     public function update(UpdateCategoryRequest $request, $id)
     {
 

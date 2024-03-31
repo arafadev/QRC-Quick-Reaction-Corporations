@@ -1,12 +1,12 @@
-@extends('admins.master')
-@section('title', 'Show Order Page')
+@extends('providers.master')
+@section('title', 'Show Inprogress Orders Page')
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Show Order Page</h2>
+                        <h2>Show Inprogress Orders Page</h2>
                         <hr>
                         <div class="row mb-3">
                             <div class="col-sm-3">
@@ -84,7 +84,8 @@
                                 <h6 class="mb-0">Note: </h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <textarea id="elm1" name="description">{{ $order->notes }}</textarea>                  
+                                <textarea id="elm1" disabled name="notes">{{ $order->notes }}</textarea>
+
                                 @error('note')
                                     <div class="bg-red-100 text-red-500">{{ $message }}</div>
                                 @enderror
@@ -121,6 +122,7 @@
 
                             </div>
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Vat Value:</h6>
@@ -145,7 +147,7 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <input type="email" class="form-control" disabled
-                                    value="{{ $order->app_commission }}EG" />
+                                    value="{{ $order->app_commession }}EG" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -157,6 +159,8 @@
                                     value="{{ $order->total_price }}EG" />
                             </div>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="card">
@@ -191,23 +195,33 @@
                             </div>
                         </div>
 
+
                     </div>
                 </div>
             </div>
             <div class="col-lg-12 text-center mt-3 mb-3">
-                <a href="{{ redirect()->back()->getTargetUrl() }}">
-                    <button class="btn btn-primary center" style="color: white !important;">
-                        <h3>Back</h3>
-                    </button>
-                </a>
+
+                @if ($order->status == App\Models\Order::$STATUS[2] || $order->status == App\Models\Order::$STATUS[3])
+                    <a href="{{ route('inprogress_orders.index') }}">
+                        <button class="btn btn-primary center" style="color: white !important;">
+                            <h3>Back</h3>
+                        </button>
+                    </a>
+                @elseif ($order->status == App\Models\Order::$STATUS[1])
+                    <a href="{{ route('order.accept_finished', $order->id) }}">
+                        <button class="btn btn-primary center" style="color: white !important;">
+                            <h3>Finished Order</h3>
+                        </button>
+                    </a>
+                @endif
             </div>
+
         </div>
     </div>
 @endsection
-
 @section('js')
-<script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
-<!-- init js -->
-<script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
+    <!-- init js -->
+    <script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
 @endsection

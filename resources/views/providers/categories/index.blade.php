@@ -17,6 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>Category Name</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -24,6 +25,17 @@
                                 @foreach ($categories as $category)
                                     <tr>
                                         <td>{{ $category->name }}</td>
+
+                                        <td>
+                                            @if ($category->status == App\Models\Category::$STATUS[1])
+                                                <a href="{{ route('category.inactive', $category->id) }}"> <button
+                                                        class="btn btn-success">Active</button></a>
+                                            @else
+                                                <a href="{{ route('category.active', $category->id) }}"> <button
+                                                        class="btn btn-danger">Not
+                                                        Active</button></a>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('category.edit', $category->id) }}"><button
                                                     class="btn btn-secondary">Edit </button></a>

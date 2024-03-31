@@ -23,14 +23,14 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-               
+
                 <li class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
                     <a href="{{ route('users.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>User</span>
                     </a>
                 </li>
-               
+
                 <li
                     class="{{ request()->routeIs('categories.index', 'categories.edit', 'categories.delete') ? 'active' : '' }}">
                     <a href="{{ route('categories.index') }}" class="waves-effect">
