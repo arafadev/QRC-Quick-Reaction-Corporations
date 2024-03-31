@@ -37,12 +37,12 @@ class Order extends Model
     public static $STATUS = ['new', 'inprogress', 'finished', 'cancelled'];
     public static $CANCELLED_BY = ['user', 'provider'];
 
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function provider()
     {
         return $this->belongsTo(Provider::class);
@@ -55,7 +55,7 @@ class Order extends Model
 
     public function scopeNew($query)
     {
-        return $query->where('status','new');
+        return $query->where('status', 'new');
     }
     public function scopeInprogress($query)
     {
@@ -69,7 +69,7 @@ class Order extends Model
     {
         return $query->where('status', 'cancelled');
     }
-    
+
     function haversineGreatCircleDistance(
         $latitudeFrom,
         $longitudeFrom,
@@ -89,4 +89,6 @@ class Order extends Model
             cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
         return round($angle * $earthRadius, 1);
     }
+
+  
 }
