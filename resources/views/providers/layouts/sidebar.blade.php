@@ -23,12 +23,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                {{-- <li class="{{ request()->routeIs('admin.index') ? 'active' : '' }}">
-                    <a href="{{ route('admin.index') }}" class="waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Admins</span>
-                    </a>
-                </li> --}}
+               
                 <li class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
                     <a href="{{ route('users.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>

@@ -1,5 +1,5 @@
 @extends('admins.master')
-@section('title', 'Edit Provider Page')
+@section('title', 'Edit Category Page')
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -17,23 +17,6 @@
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" required name="name"
                                         value="{{ $category->name }}" />
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h4 class="mb-0">Select Provider:</h4>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <select class="form-select" name="provider_id" aria-label="Default select example"
-                                        required>
-                                        <option selected disabled>Select Provider</option>
-                                        @foreach ($providers as $provider)
-                                            <option value="{{ $provider->id }}"
-                                                {{ $category->provider_id == $provider->id ? 'selected  ' : '' }}>
-                                                {{ $provider->name }}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
                             </div>
                             <div class="row">

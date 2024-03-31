@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Provider;
 
-use App\Http\Requests\Provider\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Provider\StoreCategoryRequest;
+use App\Http\Requests\Provider\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        return view('providers.categories.index', ['categories' => Category::where('provider_id', auth()->user()->id)->get()]);
+        return view('providers.categories.index', ['categories' => Category::where('provider_id', auth()->user()->id)->latest()->get()]);
     }
 
     public function create()
@@ -33,7 +35,29 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-    return view('admins.categories.edit', ['category' => Category::findOrFail($id)]);
+        return view('providers.categories.edit', ['category' => Category::findOrFail($id)]);
+    }
+    public function update(UpdateCategoryRequest $request, $id)
+    {
+
+        Category::findOrFail($id)->update($request->validated() + ['provider_id' => Auth::id()]);
+        $notification = array(
+            'message' => 'Category Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('categories.index')->with($notification);
     }
 
+
+    public function delete($id)
+    {
+        Category::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Category deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('categories.index')->with($notification);
+    }
 }
