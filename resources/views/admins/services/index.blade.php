@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h2>Services</h2>
                         <hr>
-                        <a href="{{ route('service.create') }}"><button type="button"
+                        <a href="{{ route('admins.service.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add
                                 Service</button></a>
 

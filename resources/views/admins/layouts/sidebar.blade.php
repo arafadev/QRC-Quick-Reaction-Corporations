@@ -31,7 +31,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('users.index') }}" class="waves-effect">
+                    <a href="{{ route('admins.users.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>User</span>
                     </a>
@@ -43,13 +43,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('categories.index') }}" class="waves-effect">
+                    <a href="{{ route('admins.categories.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>Categories</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('services.index') }}" class="waves-effect">
+                    <a href="{{ route('admins.services.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>Services</span>
                     </a>
@@ -60,10 +60,10 @@
                         <span>Orders</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('new_orders.index') }}">New Orders</a></li>
-                        <li><a href="{{ route('inprogress_orders.index') }}">Inprogress Orders</a></li>
-                        <li><a href="{{ route('finished_orders.index') }}">Finished Orders</a></li>
-                        <li><a href="{{ route('cancelled_orders.index') }}">Canceled Orders</a></li>
+                        <li><a href="{{ route('admins.new_orders.index') }}">New Orders</a></li>
+                        <li><a href="{{ route('admins.inprogress_orders.index') }}">Inprogress Orders</a></li>
+                        <li><a href="{{ route('admins.finished_orders.index') }}">Finished Orders</a></li>
+                        <li><a href="{{ route('admins.cancelled_orders.index') }}">Canceled Orders</a></li>
                     </ul>
                 </li>
             </ul>

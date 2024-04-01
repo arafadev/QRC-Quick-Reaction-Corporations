@@ -42,7 +42,7 @@
                                         <td>{{ $order->created_at->translatedFormat('l, F jS, Y \a\t g:i A') }}</td>
 
                                         <td>
-                                            <a href="{{ route('finished_order.show', $order->id) }}"> <button type="button"
+                                            <a href="{{ route('admins.finished_order.show', $order->id) }}"> <button type="button"
                                                     class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                     Show

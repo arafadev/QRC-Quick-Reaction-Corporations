@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h2>Categories</h2>
                         <hr>
-                        <a href="{{ route('category.create') }}"><button type="button"
+                        <a href="{{ route('admins.category.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add
                                 Category</button></a>
 
@@ -29,18 +29,18 @@
                                         <td>{{ $category->provider->name }}</td>
                                         <td>
                                             @if ($category->status == App\Models\Category::$STATUS[1])
-                                                <a href="{{ route('category.inactive', $category->id) }}"> <button
+                                                <a href="{{ route('admins.category.inactive', $category->id) }}"> <button
                                                         class="btn btn-success">Active</button></a>
                                             @else
-                                                <a href="{{ route('category.active', $category->id) }}"> <button
+                                                <a href="{{ route('admins.category.active', $category->id) }}"> <button
                                                         class="btn btn-danger">Not
                                                         Active</button></a>
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('category.edit', $category->id) }}"><button
+                                            <a href="{{ route('admins.category.edit', $category->id) }}"><button
                                                     class="btn btn-secondary">Edit </button></a>
-                                            <a href="{{ route('category.delete', $category->id) }}"><button
+                                            <a href="{{ route('admins.category.delete', $category->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
 

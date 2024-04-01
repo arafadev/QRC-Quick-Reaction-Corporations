@@ -24,21 +24,20 @@
                     </a>
                 </li>
 
-                <li class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
+                <li>
                     <a href="{{ route('users.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>User</span>
                     </a>
                 </li>
 
-                <li
-                    class="{{ request()->routeIs('categories.index', 'categories.edit', 'categories.delete') ? 'active' : '' }}">
+                <li>
                     <a href="{{ route('categories.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>Categories</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('services.index') ? 'active' : '' }}">
+                <li>
                     <a href="{{ route('services.index') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>Services</span>

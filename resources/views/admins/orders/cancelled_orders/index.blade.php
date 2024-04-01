@@ -56,7 +56,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('cancelled_order.show', $order->id) }}"> <button type="button"
+                                            <a href="{{ route('admins.cancelled_order.show', $order->id) }}"> <button type="button"
                                                     class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                     Show

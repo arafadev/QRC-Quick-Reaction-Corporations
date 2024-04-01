@@ -32,7 +32,7 @@ class ServiceController extends Controller
             'message' => 'Service Created Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('services.index')->with($notification);
+        return redirect()->route('admins.services.index')->with($notification);
     }
 
     public function edit($id)
@@ -50,7 +50,7 @@ class ServiceController extends Controller
             'message' => 'Service Updated Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('services.index')->with($notification);
+        return redirect()->route('admins.services.index')->with($notification);
     }
 
     
@@ -82,6 +82,6 @@ class ServiceController extends Controller
             'message' => 'Service Deleted Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('services.index')->with($notification);
+        return redirect()->route('admins.services.index')->with($notification);
     }
 }

@@ -21,37 +21,35 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = 'admin/dashboard';
     public const PROVIDER = 'provider/dashboard';
 
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     *
-     * @return void
-     */
     public function boot()
     {
-        $this->configureRateLimiting();
-
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-                
-                Route::middleware('web')
-                ->group(base_path('routes/provider.php'));
-        });
+        parent::boot();
     }
 
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting()
+    public function map()
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        $this->mapApiRoutes();
+
+        $this->mapWebRoutes();
+
+        $this->mapProviderRoutes();
+
+    }
+    protected function mapWebRoutes()
+    {
+        Route::middleware('web')
+            ->group(base_path('routes/web.php'));
+    }
+    protected function mapApiRoutes()
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapProviderRoutes()
+    {
+        Route::middleware('web')
+            ->group(base_path('routes/provider.php'));
     }
 }

@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h2>Users</h2>
                         <hr>
-                        <a href="{{ route('user.create') }}"><button type="button"
+                        <a href="{{ route('admins.user.create') }}"><button type="button"
                                 class="btn btn-primary waves-effect waves-light" style="float: right;">Add User</button></a>
 
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
@@ -33,7 +33,7 @@
                                         <td>{{ $user->phone }}</td>
                                         <td>
                                             @if ($user->status == 1)
-                                                <a href="{{ route('user.inactive', $user->id) }}"> <button
+                                                <a href="{{ route('admins.user.inactive', $user->id) }}"> <button
                                                         class="btn btn-success">Active</button></a>
                                             @else
                                                 <a href="{{ route('user.active', $user->id) }}"> <button
@@ -42,9 +42,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('user.edit', $user->id) }}"><button
+                                            <a href="{{ route('admins.user.edit', $user->id) }}"><button
                                                     class="btn btn-secondary">Edit </button></a>
-                                            <a href="{{ route('user.delete', $user->id) }}"><button
+                                            <a href="{{ route('admins.user.delete', $user->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
 

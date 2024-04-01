@@ -54,7 +54,7 @@
                                             @endif
                                         </td> --}}
                                         <td>
-                                            <a href="{{ route('new_order.show', $order->id) }}"> <button type="button"
+                                            <a href="{{ route('admins.new_order.show', $order->id) }}"> <button type="button"
                                                     class="btn btn-primary">
                                                     <i class="bi bi-eye"></i>
                                                     Show
