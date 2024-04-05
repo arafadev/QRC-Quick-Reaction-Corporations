@@ -12,6 +12,7 @@ class NotificationController extends Controller
 {
     public function index()
     {
+        DB::table('notifications')->update(['read_at' => now()]);
         return view('admins.notifications.index', ['notifications' => DB::table('notifications')->get()]);
 
     }
