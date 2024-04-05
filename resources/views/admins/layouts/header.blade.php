@@ -90,37 +90,36 @@
                        </div>
                        <div data-simplebar style="max-height: 230px;">
                            @foreach (auth()->user()->unreadNotifications as $notification)
-                               class="text-reset notification-item">
-                               <div class="d-flex">
-                                   <div class="avatar-xs me-3">
-                                       <span class="font-size-25">
-                                           @php
-                                               $provider_image = App\Models\Provider::findOrFail(
-                                                   $notification->data['provider_id'],
-                                               )->image;
-                                           @endphp
-                                           <img src="{{ asset($provider_image) }}" width="40px" height="40px"
-                                               alt="provider image">
-                                       </span>
-                                   </div>
-                                   <div class="flex-1">
-                                       <h6 class="mb-1">{{ $notification->data['provider_name'] }} </h6>
-                                       <div class="font-size-12 text-muted">
-                                           <p class="mb-1">
-                                               @if ($notification->type == 'App\Notifications\CreateCategory')
-                                                   {{ $notification->data['category_name'] }} Category Is Added By
-                                                   {{ $notification->data['provider_name'] }}
-                                               @else
-                                                   {{ $notification->data['service_name'] }} Service Is Added By
-                                                   {{ $notification->data['provider_name'] }}
-                                               @endif
-                                           </p>
-                                           <p class="mb-0"><i class="mdi mdi-clock-outline"></i>
-                                               {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                                           </p>
+                               <a href="" class="text-reset notification-item">
+                                   <div class="d-flex">
+                                       <div class="avatar-xs me-3">
+                                           <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                               @php
+                                                   $provider_image = App\Models\Provider::findOrFail(
+                                                       $notification->data['provider_id'],
+                                                   )->image;
+                                               @endphp
+                                               <img src="{{ asset($provider_image) }}" width="40px" height="40px"
+                                                   alt="provider image">
+                                           </span>
+                                       </div>
+                                       <div class="flex-1">
+                                           <h6 class="mb-1">{{ $notification->data['provider_name'] }} </h6>
+                                           <div class="font-size-12 text-muted">
+                                               <p class="mb-1">
+                                                   @if ($notification->type == 'App\Notifications\CreateCategory')
+                                                       {{ $notification->data['category_name'] }} Category Is Added By
+                                                       {{ $notification->data['provider_name'] }}
+                                                   @else
+                                                       {{ $notification->data['service_name'] }} Service Is Added By
+                                                       {{ $notification->data['provider_name'] }}
+                                                   @endif
+                                               </p>
+                                               <p class="mb-0"> 3 min ago</p>
+                                           </div>
                                        </div>
                                    </div>
-                               </div>
+                               </a>
                            @endforeach
 
                        </div>

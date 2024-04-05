@@ -108,5 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     // Notification
     Route::get('notifications', [NotificationController::class, 'index'])->name('admins.notifications');
+    Route::post('notifications/delete', [NotificationController::class, 'delete'])->name('admins.notifications.delete');
+
 });
 
