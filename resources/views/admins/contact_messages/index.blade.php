@@ -17,6 +17,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Message</th>
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,6 +27,8 @@
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->phone }}</td>
                                         <td>{!! $data->message !!}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->created_at)->diffForHumans() }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

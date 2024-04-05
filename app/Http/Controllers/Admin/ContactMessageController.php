@@ -11,6 +11,6 @@ class ContactMessageController extends Controller
     public function index()
     {
 
-        return view('admins.contact_messages.index', ['contact_messages' => ContactMessage::get()]);
+        return view('admins.contact_messages.index', ['contact_messages' => ContactMessage::latest()->get()]);
     }
 }
