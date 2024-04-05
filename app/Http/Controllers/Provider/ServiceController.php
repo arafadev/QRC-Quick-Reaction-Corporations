@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Provider;
 
+use App\Models\Admin;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\CreateService;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\Provider\StoreServiceRequest;
 use App\Http\Requests\Provider\UpdateServiceRequest;
 
@@ -24,11 +27,14 @@ class ServiceController extends Controller
 
     public function store(StoreServiceRequest $request)
     {
-        Service::create($request->validated() + ['provider_id' => auth()->user()->id]);
+        $service = Service::create($request->validated() + ['provider_id' => auth()->user()->id]);
+        $category_name = Category::findOrFail($request->category_id)->name;
         $notification = array(
             'message' => 'Service Created Successfully',
             'alert-type' => 'success'
         );
+        $admins = Admin::get();
+        Notification::send($admins, new CreateService($category_name, $service->name));
         return redirect()->route('services.index')->with($notification);
     }
 

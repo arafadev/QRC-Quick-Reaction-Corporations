@@ -1,4 +1,4 @@
-@extends('admins.master')
+@extends('providers.master')
 @section('title', 'Create Category Page')
 @section('content')
     <div class="container-fluid">

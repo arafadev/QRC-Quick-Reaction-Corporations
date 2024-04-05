@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Provider;
 
+use App\Models\Admin;
 use App\Models\Category;
+use App\Notifications\CreateCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\Provider\StoreCategoryRequest;
 use App\Http\Requests\Provider\UpdateCategoryRequest;
 
@@ -24,11 +27,15 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
 
-        Category::create($request->validated() + ['provider_id' => auth()->user()->id]);
+        $category = Category::create($request->validated() + ['provider_id' => auth()->user()->id]);
+
         $notification = array(
             'message' => 'Category created Successfully',
             'alert-type' => 'success'
         );
+
+        $admins = Admin::get();
+        Notification::send($admins, new CreateCategory($category->id, $category->name));
 
         return redirect()->route('categories.index')->with($notification);
     }

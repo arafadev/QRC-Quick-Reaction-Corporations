@@ -66,6 +66,12 @@
                         <li><a href="{{ route('admins.cancelled_orders.index') }}">Canceled Orders</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('admins.categories.index') }}" class="waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Contact Us</span>
+                    </a>
+                </li>
             </ul>
 
         </div>

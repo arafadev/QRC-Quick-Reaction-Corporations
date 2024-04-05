@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NotificationController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -105,5 +106,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('orders/cancelled', [CancelledOrderController::class, 'index'])->name('admins.cancelled_orders.index');
     Route::get('orders/cancelled/show/{id}', [CancelledOrderController::class, 'show'])->name('admins.cancelled_order.show');
 
+    // Notification
+    Route::get('notifications', [NotificationController::class, 'index'])->name('admins.notifications');
 });
 

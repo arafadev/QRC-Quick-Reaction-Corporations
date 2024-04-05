@@ -62,6 +62,7 @@
                </div>
 
 
+
                <div class="dropdown d-none d-lg-inline-block ms-1">
                    <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                        <i class="ri-fullscreen-line"></i>
@@ -79,67 +80,53 @@
                        <div class="p-3">
                            <div class="row align-items-center">
                                <div class="col">
-                                   <h6 class="m-0"> Notifications </h6>
+                                   <h6 class="m-0"> Notifications ({{ Auth::User()->unreadNotifications->count() }})
+                                   </h6>
                                </div>
-                               <div class="col-auto">
+                               {{-- <div class="col-auto">
                                    <a href="#!" class="small"> View All</a>
-                               </div>
+                               </div> --}}
                            </div>
                        </div>
                        <div data-simplebar style="max-height: 230px;">
-                           <a href="" class="text-reset notification-item">
+                           @foreach (auth()->user()->unreadNotifications as $notification)
+                               class="text-reset notification-item">
                                <div class="d-flex">
                                    <div class="avatar-xs me-3">
-                                       <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                           <i class="ri-shopping-cart-line"></i>
+                                       <span class="font-size-25">
+                                           @php
+                                               $provider_image = App\Models\Provider::findOrFail(
+                                                   $notification->data['provider_id'],
+                                               )->image;
+                                           @endphp
+                                           <img src="{{ asset($provider_image) }}" width="40px" height="40px"
+                                               alt="provider image">
                                        </span>
                                    </div>
                                    <div class="flex-1">
-                                       <h6 class="mb-1">Your order is placed</h6>
+                                       <h6 class="mb-1">{{ $notification->data['provider_name'] }} </h6>
                                        <div class="font-size-12 text-muted">
-                                           <p class="mb-1">If several languages coalesce the grammar</p>
-                                           <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                                           <p class="mb-1">
+                                               @if ($notification->type == 'App\Notifications\CreateCategory')
+                                                   {{ $notification->data['category_name'] }} Category Is Added By
+                                                   {{ $notification->data['provider_name'] }}
+                                               @else
+                                                   {{ $notification->data['service_name'] }} Service Is Added By
+                                                   {{ $notification->data['provider_name'] }}
+                                               @endif
+                                           </p>
+                                           <p class="mb-0"><i class="mdi mdi-clock-outline"></i>
+                                               {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                           </p>
                                        </div>
                                    </div>
                                </div>
-                           </a>
-                           <a href="" class="text-reset notification-item">
-                               <div class="d-flex">
-                                   <div class="avatar-xs me-3">
-                                       <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                           <i class="ri-shopping-cart-line"></i>
-                                       </span>
-                                   </div>
-                                   <div class="flex-1">
-                                       <h6 class="mb-1">Your order is placed</h6>
-                                       <div class="font-size-12 text-muted">
-                                           <p class="mb-1">If several languages coalesce the grammar</p>
-                                           <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </a>
-                           <a href="" class="text-reset notification-item">
-                               <div class="d-flex">
-                                   <div class="avatar-xs me-3">
-                                       <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                           <i class="ri-shopping-cart-line"></i>
-                                       </span>
-                                   </div>
-                                   <div class="flex-1">
-                                       <h6 class="mb-1">Your order is placed</h6>
-                                       <div class="font-size-12 text-muted">
-                                           <p class="mb-1">If several languages coalesce the grammar</p>
-                                           <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </a>
+                           @endforeach
 
                        </div>
                        <div class="p-2 border-top">
                            <div class="d-grid">
-                               <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                               <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('admins.notifications') }}">
                                    <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
                                </a>
                            </div>
