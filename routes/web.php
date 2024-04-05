@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -115,5 +116,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('contact_us', [ContactUsController::class, 'index'])->name('admins.contact_us');
     Route::post('contact_us/{id}', [ContactUsController::class, 'update'])->name('admins.contact_us.update');
 
+    // Contact Messages 
+    Route::get('contact_messages', [ContactMessageController::class, 'index'])->name('admins.contact_messages');
 });
 

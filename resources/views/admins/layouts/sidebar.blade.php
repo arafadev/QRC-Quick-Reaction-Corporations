@@ -67,11 +67,18 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="{{ route('admins.contact_messages') }}" class="waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Contact Messages</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admins.contact_us') }}" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
                         <span>Contact Us</span>
                     </a>
                 </li>
+               
             </ul>
 
         </div>
