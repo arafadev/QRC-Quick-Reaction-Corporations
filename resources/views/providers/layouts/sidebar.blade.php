@@ -55,7 +55,15 @@
                         <li><a href="{{ route('cancelled_orders.index') }}">Canceled Orders</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="{{ route('providers.create_message') }}" class="waves-effect">
+                        <i class="ri-account-circle-line"></i>
+                        <span>Contact Message</span>
+                    </a>
+                </li>
             </ul>
+
 
         </div>
         <!-- Sidebar -->

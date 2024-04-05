@@ -23,7 +23,7 @@ class User extends Authenticatable
         'status'
     ];
 
-    public static $STATUS = [0,1];
+    public static $STATUS = [0, 1];
     public static $DEFAULT_IMG = 'upload/no_image.jpg';
 
     public function isActive()
@@ -38,6 +38,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+    public function contactable()
+    {
+        return $this->morphMany(ContactMessage::class, 'contactable');
     }
 
 }

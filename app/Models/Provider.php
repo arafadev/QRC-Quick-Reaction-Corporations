@@ -42,6 +42,13 @@ class Provider extends Authenticatable
     {
         return $query->where('status', 0);
     }
+
+    public function contactable()
+    {
+        return $this->morphMany(ContactMessage::class, 'contactable');
+    }
+
+
     function haversineGreatCircleDistance(
         $latitudeFrom,
         $longitudeFrom,
@@ -62,5 +69,7 @@ class Provider extends Authenticatable
             cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
         return round($angle * $earthRadius, 1);
     }
+
+
 
 }

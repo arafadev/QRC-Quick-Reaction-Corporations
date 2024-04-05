@@ -9,5 +9,10 @@ class ContactMessage extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function contactable()
+    {
+        return $this->morphTo();
+    }
 
+    
 }

@@ -1,12 +1,14 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Provider\UserController;
+use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Provider\ServiceController;
 use App\Http\Controllers\Provider\CategoryController;
 use App\Http\Controllers\Provider\NewOrderController;
 use App\Http\Controllers\ProviderDashboardController;
 use App\Http\Controllers\Admin\CancelledOrderController;
 use App\Http\Controllers\Provider\FinishOrderController;
+use App\Http\Controllers\Provider\ContactMessageController;
 use App\Http\Controllers\Provider\InProgressOrderController;
 use App\Http\Controllers\Auth\Provider\ProviderLoginController;
 
@@ -59,5 +61,10 @@ Route::group(['prefix' => 'provider', 'middleware' => 'auth:provider'], function
     // Cancelled Order 
     Route::get('orders/cancelled', [CancelledOrderController::class, 'index'])->name('cancelled_orders.index');
     Route::get('orders/cancelled/show/{id}', [CancelledOrderController::class, 'show'])->name('cancelled_order.show');
+
+    // Contact Message 
+    Route::get('create/message', [ContactMessageController::class, 'createMessage'])->name('providers.create_message');
+    Route::post('contact_us/{id}', [ContactMessageController::class, 'create'])->name('providers.contact_us.create');
+
 
 });
