@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\NotificationController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -11,9 +10,11 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewOrderController;
 use App\Http\Controllers\Admin\ProviderController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\FinishOrderController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\CancelledOrderController;
 use App\Http\Controllers\Admin\InProgressOrderController;
 
@@ -109,6 +110,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     // Notification
     Route::get('notifications', [NotificationController::class, 'index'])->name('admins.notifications');
     Route::post('notifications/delete', [NotificationController::class, 'delete'])->name('admins.notifications.delete');
+
+    // Contact US 
+    Route::get('contact_us', [ContactUsController::class, 'index'])->name('admins.contact_us');
+    Route::post('contact_us/{id}', [ContactUsController::class, 'update'])->name('admins.contact_us.update');
 
 });
 

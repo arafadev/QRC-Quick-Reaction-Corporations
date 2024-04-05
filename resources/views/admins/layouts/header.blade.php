@@ -123,7 +123,6 @@
                                    </div>
                                </a>
                            @endforeach
-
                        </div>
                        <div class="p-2 border-top">
                            <div class="d-grid">

@@ -43,7 +43,6 @@
                                             <a href="{{ route('admins.category.delete', $category->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
