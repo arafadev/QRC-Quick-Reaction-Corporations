@@ -89,7 +89,7 @@
                            </div>
                        </div>
                        <div data-simplebar style="max-height: 230px;">
-                           @foreach (auth()->user()->unreadNotifications as $notification)
+                           @foreach (auth()->user()->unreadNotifications() as $notification)
                                <a href="" class="text-reset notification-item">
                                    <div class="d-flex">
                                        <div class="avatar-xs me-3">
@@ -115,7 +115,9 @@
                                                        {{ $notification->data['provider_name'] }}
                                                    @endif
                                                </p>
-                                               <p class="mb-0"> 3 min ago</p>
+                                               <p class="mb-0">
+                                                   {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans(null, true) }}
+                                               </p>
                                            </div>
                                        </div>
                                    </div>
@@ -125,7 +127,8 @@
                        </div>
                        <div class="p-2 border-top">
                            <div class="d-grid">
-                               <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('admins.notifications') }}">
+                               <a class="btn btn-sm btn-link font-size-14 text-center"
+                                   href="{{ route('admins.notifications') }}">
                                    <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
                                </a>
                            </div>

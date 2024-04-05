@@ -91,10 +91,12 @@
                                             <div class="checkbox-wrapper-mail">
                                                 <!-- Checkbox for each notification -->
                                                 <input type="checkbox" name="noty_ids[]" id="chk.{{ $notification->id }}"
-                                                    value="{{ $notification->id }}">
+                                                value="{{ $notification->id }}">
+                                                
                                                 <label class="form-label" for="chk.{{ $notification->id }}"
                                                     class="toggle"></label>
                                             </div>
+
                                             <span href="#" class="title">
                                                 @php
                                                     $data = json_decode($notification->data, true);
