@@ -28,7 +28,7 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate font-size-14 mb-2">Total Sales</p>
-                                <h4 class="mb-2">EG</h4>
+                                <h4 class="mb-2">{{ $total_sales }}EG</h4>
 
                             </div>
                             <div class="avatar-sm">
@@ -46,7 +46,7 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate font-size-14 mb-2">New Orders</p>
-                                <h4 class="mb-2"></h4>
+                                <h4 class="mb-2">{{ $new_orders }}</h4>
 
                             </div>
                             <div class="avatar-sm">
@@ -64,7 +64,7 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate font-size-14 mb-2">New Users</p>
-                                <h4 class="mb-2"></h4>
+                                <h4 class="mb-2">{{ $users_last_week }}</h4>
 
                             </div>
                             <div class="avatar-sm">
@@ -82,7 +82,7 @@
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate font-size-14 mb-2">Finished Order</p>
-                                <h4 class="mb-2"></h4>
+                                <h4 class="mb-2">{{ $finished_orders }}</h4>
 
                             </div>
                             <div class="avatar-sm">
@@ -108,21 +108,19 @@
                             <div class="row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div class="d-inline-flex">
-                                        <h5 class="me-2"></h5>
+                                        <h5 class="me-2">{{ $finished_orders }}</h5>
                                     </div>
                                     <p class="text-muted text-truncate mb-0">All Orders Finished</p>
                                 </div><!-- end col -->
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div class="d-inline-flex">
-                                        <h5 class="me-2"></h5>
-
+                                        <h5 class="me-2">{{ $finished_orders_last_week }}</h5>
                                     </div>
                                     <p class="text-muted text-truncate mb-0">Last Week</p>
                                 </div><!-- end col -->
                                 <div class="col-sm-4">
                                     <div class="d-inline-flex">
-                                        <h5 class="me-2"></h5>
-
+                                        <h5 class="me-2">{{ $finished_orders_last_month }}</h5>
                                     </div>
                                     <p class="text-muted text-truncate mb-0">Last Month</p>
                                 </div><!-- end col -->
@@ -143,21 +141,21 @@
                             <div class="row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div>
-                                        <h5></h5>
-                                        <p class="text-muted text-truncate mb-0">All Orders Finished
 
+                                        <h5> {{ $finished_orders_last_month }}</h5>
+                                        <p class="text-muted text-truncate mb-0">All Orders Finished:
                                         </p>
                                     </div>
                                 </div><!-- end col -->
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div>
-                                        <h5>EG</h5>
+                                        <h5>{{ $finished_orders_last_week_profits }}EG</h5>
                                         <p class="text-muted text-truncate mb-0">Last Week</p>
                                     </div>
                                 </div><!-- end col -->
                                 <div class="col-sm-4">
                                     <div>
-                                        <h5>EG</h5>
+                                        <h5>{{ $finished_orders_last_month_profits }}EG</h5>
                                         <p class="text-muted text-truncate mb-0">Last Month</p>
                                     </div>
                                 </div><!-- end col -->
@@ -178,7 +176,8 @@
                         <h4 class="card-title mb-4">Latest Finished Orders</h4>
 
                         <div class="table-responsive">
-                            <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Name</th>
@@ -190,7 +189,27 @@
                                     </tr>
                                 </thead><!-- end thead -->
                                 <tbody>
-                                    <!-- end -->
+                                    @foreach ($orders as $order)
+                                        <tr>
+                                            <td>
+                                                <h6 class="mb-0">{{ $order->user->name }}</h6>
+                                            </td>
+                                            <td>{{ $order->user->phone }}</td>
+                                            <td>
+                                                <div class="font-size-13"><i
+                                                        class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>{{ $order->user->email }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <i
+                                                    class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>
+                                                Active
+                                            </td>
+                                            <td>{{ $order->created_at->translatedFormat('l, F jS, Y \a\t g:i A') }}</td>
+
+                                            <td>{{ $order->app_commission }}EG</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody><!-- end tbody -->
                             </table> <!-- end table -->
                         </div>
@@ -206,15 +225,15 @@
 @endsection
 @section('js')
 
-    {{-- <!-- apexcharts -->
+    <!-- apexcharts -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         // Define new options for the chart
         var options = {
             series: [{
                 name: 'Revenue',
-                data: [{{ $finished_orders }}, {{ $finishedOrdersLastWeek_profits }},
-                    {{ $finishedOrdersLastMonth_profits }}
+                data: [{{ $finished_orders }}, {{ $finished_orders_last_week_profits }},
+                    {{ $finished_orders_last_month_profits }}
                 ]
             }],
             chart: {
@@ -269,8 +288,8 @@
         var options = {
             series: [{
                 name: 'Orders',
-                data: [{{ $finished_orders }}, {{ $finishedOrdersLastWeek }},
-                    {{ $finishedOrdersLastMonth }}
+                data: [{{ $finished_orders }}, {{ $finished_orders_last_week }},
+                    {{ $finished_orders_last_month }}
                 ]
             }],
             chart: {
@@ -309,7 +328,7 @@
             tooltip: {
                 y: {
                     formatter: function(val) {
-                        return val + "EG";
+                        return val ;
                     }
                 }
             }
@@ -318,7 +337,7 @@
         // Render the new chart with updated data
         var chart = new ApexCharts(document.querySelector("#orders_chart"), options);
         chart.render();
-    </script> --}}
+    </script>
 
 
 @endsection

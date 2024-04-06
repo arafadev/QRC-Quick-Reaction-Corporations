@@ -13,23 +13,23 @@ class ProviderDashboardController extends Controller
     $total_sales = Order::where('provider_id', auth()->user()->id)->sum('total_price');
     $new_orders = Order::where('provider_id', auth()->user()->id)->where('status', 'new')->count();
     $finished_orders = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')->count();
-    $finishedOrdersLastWeek = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')
+    $finished_orders_last_week = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')
       ->whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()])
       ->count();
-    $finishedOrdersLastWeek_profits = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')
+    $finished_orders_last_week_profits = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')
       ->whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()])
       ->sum('total_price');
-    $finishedOrdersLastMonth = Order::where('status', 'finished')->where('provider_id', auth()->user()->id)
+    $finished_orders_last_month = Order::where('status', 'finished')->where('provider_id', auth()->user()->id)
       ->whereBetween('created_at', [now()->subMonth()->startOfMonth(), now()->subMonth()->endOfMonth()])
       ->count();
-    $finishedOrdersLastMonth_profits = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')
+    $finished_orders_last_month_profits = Order::where('provider_id', auth()->user()->id)->where('status', 'finished')
       ->whereBetween('created_at', [now()->subMonth()->startOfMonth(), now()->subMonth()->endOfMonth()])
       ->sum('total_price');
-    $usersLastWeek = User::whereHas('orders', function ($q) {
+    $users_last_week = User::whereHas('orders', function ($q) {
       $q->where('provider_id', auth()->user()->id)
         ->where('created_at', '>=', now()->subDays(7));
     })->count();
     $orders = Order::where('provider_id', auth()->user()->id)->where('status', Order::$STATUS[2])->latest()->get();
-    return view('providers.index');
+    return view('providers.index', compact('orders', 'total_sales', 'new_orders', 'finished_orders', 'finished_orders_last_week', 'finished_orders_last_week_profits', 'finished_orders_last_month', 'finished_orders_last_month_profits', 'users_last_week'));
   }
 }

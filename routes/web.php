@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\ContactMessageController;
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;

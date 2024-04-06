@@ -18,7 +18,7 @@ class OrderItemsSeeder extends Seeder
         for($i = 1; $i<=20 ; $i++){
 
             OrderItem::create([
-                'order_id' =>rand(1,20),
+                'order_id' =>1,
                 'service_id' =>rand(1,20),
                 'price' => rand(200,600)
             ]);

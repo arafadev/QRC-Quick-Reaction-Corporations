@@ -1,5 +1,5 @@
 @extends('admins.master')
-@section('title', 'Admin Dashboard')
+@section('title', 'Dashboard Admin | QRC ')
 @section('content')
 
     <div class="container-fluid">
@@ -178,7 +178,8 @@
                         <h4 class="card-title mb-4">Latest Finished Orders</h4>
 
                         <div class="table-responsive">
-                            <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
+                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Name</th>

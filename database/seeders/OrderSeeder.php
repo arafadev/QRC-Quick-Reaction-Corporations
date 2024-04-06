@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Provider;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -24,13 +25,13 @@ class OrderSeeder extends Seeder
         $cancelled_by = Order::$CANCELLED_BY;
         $type = ['normal', 'abnormal'];
 
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 400; $i++) {
             $now = Carbon::now();
             $created_at = $now->subDays(rand(7, 30)); // Subtract random days between 7 and 30
 
             $orders[] = [
                 'user_id' => rand(1, 10), 
-                'provider_id' => rand(1, 5), 
+                'provider_id' => rand(1, Provider::count()), 
                 'patient_map_desc' => $mapDescriptions[array_rand($mapDescriptions)] . ' - Patient',
                 'patient_lat' => mt_rand(-90000000, 90000000) / 1000000,
                 'patient_lng' => mt_rand(-90000000, 90000000) / 1000000,

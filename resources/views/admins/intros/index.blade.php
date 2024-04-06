@@ -1,5 +1,5 @@
 @extends('admins.master')
-@section('title', 'Intos')
+@section('title', 'Intos Page')
 @section('content')
     <div class="container-fluid">
         <div class="row">
