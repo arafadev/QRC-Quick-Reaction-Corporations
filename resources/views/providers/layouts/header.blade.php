@@ -157,7 +157,7 @@
                    </button>
                    <div class="dropdown-menu dropdown-menu-end">
                        <!-- item-->
-                       <a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                       <a class="dropdown-item" href="{{ route('provider.profile') }}"><i
                                class="ri-user-line align-middle me-1"></i> Profile</a>
 
                        <div class="dropdown-divider"></div>

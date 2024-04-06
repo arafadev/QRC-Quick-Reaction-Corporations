@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Provider\ProviderProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Provider\UserController;
 use App\Http\Controllers\Admin\ContactUsController;
@@ -20,6 +21,8 @@ Route::group(['prefix' => 'provider', 'middleware' => 'guest:provider'], functio
 
 Route::group(['prefix' => 'provider', 'middleware' => 'auth:provider'], function () {
     Route::get('dashboard', [ProviderDashboardController::class, 'index'])->name('provider.dashboard');
+    Route::get('profile', [ProviderProfileController::class, 'index'])->name('provider.profile');
+    Route::post('profile/{id}', [ProviderProfileController::class, 'update'])->name('provider.profile.update');
     Route::get('logout', [ProviderLoginController::class, 'logout'])->name('provider.logout');
     Route::get('users/index', [UserController::class, 'index'])->name('users.index');
 

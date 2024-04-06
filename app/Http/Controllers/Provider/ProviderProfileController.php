@@ -1,32 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Provider;
 
-use App\Http\Requests\Admin\Profile\UpdateAdminRequest;
-use App\Models\Admin;
+use App\Models\Provider;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Traits\UploadImgTrait;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Provider\UpdateProviderProfileRequest;
 
-class AdminProfileController extends Controller
+class ProviderProfileController extends Controller
 {
     use UploadImgTrait;
     public function index()
     {
-        return view('admins.profile.index', ['admin' => Admin::find(Auth::user()->id)]);
+        return view('providers.profile.index');
     }
 
-    public function update(UpdateAdminRequest $request)
+    public function update(UpdateProviderProfileRequest $request)
     {
         if ($request->file('image')) {
-            $filename = $this->uploadImg($request->file('image'), 'upload/admin_images');
-            if (auth()->user()->image != Admin::$DEFAULT_IMG)
+            $filename = $this->uploadImg($request->file('image'), 'upload/providers_images');
+            if (auth()->user()->image != Provider::$DEFAULT_IMG)
                 @unlink(public_path(auth()->user()->image));
         } else {
             $filename = auth()->user()->image;
         }
-        auth()->user()->update([
+        auth('provider')->user()->update([
             'email' => $request->email,
             'phone' => $request->phone,
             'image' => $filename,
