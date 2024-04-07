@@ -38,10 +38,9 @@
                                     <h6 class="mb-0">Email:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="email" name="email"  class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                        value="{{ old('email') }}" />
+                                    <input type="email" name="email" class="form-control" value="{{ old('email') }}" />
                                     @error('email')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                        <div class="rext-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -50,10 +49,11 @@
                                     <h6 class="mb-0">Phone: </h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="number" name="phone" required class="form-control  {{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                    <input type="number" name="phone" required
+                                        class="form-control  {{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                         value="{{ old('phone') }}" />
-                                    @error('phone')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                        @error('phone')
+                                        <div class="rext-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -64,8 +64,8 @@
                                 <div class="col-sm-9 text-secondary">
                                     <textarea id="elm1" name="details"></textarea>
                                     @error('details')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
-                                    @enderror
+                                    <div class="rext-danger">{{ $message }}</div>
+                                @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -73,10 +73,11 @@
                                     <h6 class="mb-0">Delivery Price: </h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="number" name="delivery_price" required class="form-control  {{ $errors->has('delivery_price') ? ' is-invalid' : '' }}"
+                                    <input type="number" name="delivery_price" required
+                                        class="form-control  {{ $errors->has('delivery_price') ? ' is-invalid' : '' }}"
                                         value="{{ old('delivery_price') }}" />
-                                    @error('delivery_price')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                        @error('delivery_price')
+                                        <div class="rext-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -114,7 +115,7 @@
                                 <div class="col-sm-9 text-secondary">
                                     <input type="file" name="image" class="form-control" id="image" />
                                     @error('image')
-                                        <div class="text-red-500">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -187,7 +188,7 @@
         function fetchAddress(latitude, longitude) {
             fetch(
                     `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}`
-                    )
+                )
                 .then(response => response.json())
                 .then(data => {
                     var address = data.features[0].place_name;

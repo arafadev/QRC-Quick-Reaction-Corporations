@@ -1,4 +1,4 @@
-@extends('providers.master')
+@extends('admins.master')
 @section('title', 'Cancelled Order Page')
 @section('content')
     <div class="container-fluid">

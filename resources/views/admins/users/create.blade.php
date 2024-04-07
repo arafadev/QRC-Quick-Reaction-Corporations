@@ -7,15 +7,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Create User Page</h2><hr>
-                        <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admins.user.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Name:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" required name="name"
+                                    <input type="text" class="form-control" required  name="name"
                                         value="{{ old('name') }}" />
+                                        @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -27,7 +30,7 @@
                                     <input type="email" name="email" required class="form-control"
                                         value="{{ old('email') }}" />
                                     @error('email')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -39,7 +42,7 @@
                                     <input type="number" name="phone" required class="form-control"
                                         value="{{ old('phone') }}" />
                                     @error('phone')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Provider;
 
 use App\Models\Order;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CancelledOrderController extends Controller

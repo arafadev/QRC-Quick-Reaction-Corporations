@@ -15,8 +15,10 @@
                                     <h6 class="mb-0">Title:</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" required name="title"
-                                        value="{{ old('title') }}" />
+                                    <input type="text" class="form-control" name="title" value="{{ old('title') }}" />
+                                    @error('title')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -27,7 +29,7 @@
                                 <div class="col-sm-9 text-secondary">
                                     <textarea id="elm1" name="description"></textarea>
                                     @error('description')
-                                        <div class="bg-red-100 text-red-500">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
@@ -39,7 +41,7 @@
                                 <div class="col-sm-9 text-secondary">
                                     <input type="file" name="image" class="form-control" id="image" />
                                     @error('image')
-                                        <div class="text-red-500">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>

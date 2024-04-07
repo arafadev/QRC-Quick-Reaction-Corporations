@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h2>Add Service Page</h2>
                         <hr>
-                        <form method="POST" action="{{ route('service.store') }}">
+                        <form method="POST" action="{{ route('admins.service.store') }}">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-sm-3">

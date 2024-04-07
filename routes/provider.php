@@ -7,7 +7,7 @@ use App\Http\Controllers\Provider\ServiceController;
 use App\Http\Controllers\Provider\CategoryController;
 use App\Http\Controllers\Provider\NewOrderController;
 use App\Http\Controllers\ProviderDashboardController;
-use App\Http\Controllers\Admin\CancelledOrderController;
+use App\Http\Controllers\Provider\CancelledOrderController;
 use App\Http\Controllers\Provider\FinishOrderController;
 use App\Http\Controllers\Provider\ContactMessageController;
 use App\Http\Controllers\Provider\InProgressOrderController;

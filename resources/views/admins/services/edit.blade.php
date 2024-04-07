@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h2>Edit Service Page</h2>
                         <hr>
-                        <form method="POST" action="{{ route('service.update', $service->id) }}">
+                        <form method="POST" action="{{ route('admins.service.update', $service->id) }}">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-sm-3">

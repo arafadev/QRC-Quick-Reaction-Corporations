@@ -42,9 +42,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('service.edit', $service->id) }}"><button
+                                            <a href="{{ route('admins.service.edit', $service->id) }}"><button
                                                     class="btn btn-secondary">Edit </button></a>
-                                            <a href="{{ route('service.delete', $service->id) }}"><button
+                                            <a href="{{ route('admins.service.delete', $service->id) }}"><button
                                                     class="btn btn-danger">Delete </button></a>
                                         </td>
 
