@@ -80,7 +80,7 @@
                        <div class="p-3">
                            <div class="row align-items-center">
                                <div class="col">
-                                   <h6 class="m-0"> Notifications ({{ Auth::User()->unreadNotifications->count() }})
+                                   <h6 class="m-0"> Notifications ({{ Auth::User()->notifications->count() }})
                                    </h6>
                                </div>
                                {{-- <div class="col-auto">
@@ -89,7 +89,7 @@
                            </div>
                        </div>
                        <div data-simplebar style="max-height: 230px;">
-                           @foreach (auth()->user()->unreadNotifications() as $notification)
+                           @foreach (auth()->user()->notifications as $notification)
                                <a href="" class="text-reset notification-item">
                                    <div class="d-flex">
                                        <div class="avatar-xs me-3">
