@@ -9,6 +9,7 @@ use App\Services\OrderService;
 use App\Traits\Api\ResponseTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\OrderRequest;
+use App\Http\Resources\OrderInfosResource;
 use App\Http\Resources\Api\CategoryResource;
 use App\Http\Resources\Api\ProviderResource;
 use App\Http\Requests\Api\CreateOrderRequest;
@@ -71,6 +72,13 @@ class OrderController extends Controller
         return $this->successData(new OrderDetailsResource($order));
     }
 
+
+    public function orderInfos(Request $request, $id)
+    {
+        $order = Order::with(['orderItems'])->findOrFail($id);
+        $data = new OrderInfosResource($order);
+        return $this->successData($data);
+    }
     // public function newOrders()
     // {
     //     return (new OrderService)->orderByStatus('new', 'new_orders');
@@ -91,5 +99,5 @@ class OrderController extends Controller
     //     Order::findOrFail($order_id)->update(['cancelled_by' => 'user']);
     //     return $this->successMsg('تم الغاء الطلب بنجاح');
     // }
-    
+
 }
