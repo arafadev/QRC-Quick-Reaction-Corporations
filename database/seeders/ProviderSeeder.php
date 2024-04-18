@@ -22,7 +22,7 @@ class ProviderSeeder extends Seeder
             DB::table('providers')->insert([
                 'name' => 'Provider ' . ($i + 1),
                 'phone' => '987654323' . ($i),
-                'email' => 'provider' . ($i + 1) . '@info.com',
+                'email' => 'provider' . ($i == 1 ? '' : $i) . '@info.com',
                 'details' => 'Details for Provider ' . ($i + 1),
                 'map_desc' => 'Near Hospital ' . ($i + 1),
                 'lat' => '25.00000000',
