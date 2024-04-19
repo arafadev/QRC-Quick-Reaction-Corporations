@@ -72,7 +72,6 @@ class OrderController extends Controller
         return $this->successData(new OrderDetailsResource($order));
     }
 
-
     public function orderInfos(Request $request, $id)
     {
         $order = Order::with(['orderItems'])->findOrFail($id);

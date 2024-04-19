@@ -6,6 +6,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Traits\Api\ResponseTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InProgressOrderResource;
+use App\Http\Resources\Api\CancelledOrderResource;
 
 class OrderStatusController extends Controller
 {
