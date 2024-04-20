@@ -36,7 +36,7 @@
                                                 <a href="{{ route('admins.user.inactive', $user->id) }}"> <button
                                                         class="btn btn-success">Active</button></a>
                                             @else
-                                                <a href="{{ route('user.active', $user->id) }}"> <button
+                                                <a href="{{ route('admins.user.active', $user->id) }}"> <button
                                                         class="btn btn-danger">Not
                                                         Active</button></a>
                                             @endif

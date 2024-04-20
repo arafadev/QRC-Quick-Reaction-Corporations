@@ -69,7 +69,7 @@ public function store(StoreUserRequest $request)
             'message' => 'User Updated Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('users.index')->with($notification);
+        return redirect()->route('admins.users.index')->with($notification);
     }
 
 
